@@ -19,7 +19,8 @@
 
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="lib/css/monokai.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
 
 	<!-- Printing and PDF exports -->
 	<script>
@@ -32,7 +33,7 @@
 
 	<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
+	<![endif]-->
 </head>
 
 <body>
@@ -44,73 +45,514 @@
 				<p>
 					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
 							Neira</a><br /><br />
-							<a target="_blank" href="https://stgoneira.github.io/javascript/ppt/?print-pdf&showNotes=true"><i class="fas fa-print"></i></a>
-						</small>
+						<a target="_blank"
+							href="https://stgoneira.github.io/javascript/ppt/?print-pdf&showNotes=true"><i
+								class="fas fa-print"></i></a>
+					</small>
 				</p>
 			</section>
 
-			<section 
-				data-background-video="https://media.giphy.com/media/LU0EPR6tWaNREI35hU/giphy.mp4" 
+			<section data-background-video="https://media.giphy.com/media/LU0EPR6tWaNREI35hU/giphy.mp4"
 				data-background-color="#000000">
 
 				<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
 					<h2>Sobre el Relator</h2>
-					
+					<ul>
+						<li>Ing. en Informática y Magíster</li>
+						<li>Main SO Linux desde 2007</li>
+						<li>Web Developer desde el comienzo</li>
+						<li>Javascript 1er lenguaje aprendido</li>
+						<li>PHP y Java los siguientes</li>
+						<li>Mobile Development - Android</li>
+					</ul>
 				</div>
+
+				<aside class="notes">
+					Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you
+					open the speaker notes window (hit »S« on your keyboard).
+				</aside>
+
 			</section>
 
-			<section 
-				data-markdown="calendario.md" 
-				data-separator="^\n\n\n" 
-				data-separator-vertical="^\n\n"
-				data-separator-notes="^Note:" 
-				data-charset="utf-8">
-				
+			<section data-background-video="https://i.giphy.com/media/l2R0fykAoG8uY2DLi/giphy.mp4"
+				data-background-color="#000000">
+
+				<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
+					<h2>Sobre uds</h2>
+					<ul>
+						<li>Lenguajes en que han trabajado</li>
+						<li>Experiencia</li>
+						<li>Trabajo actual</li>
+						<li>¿Qué esperan del curso?</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					Conocer a los alumnos, sus estudios, experiencia, trabajo actual y lo que esperan
+				</aside>
+
 			</section>
 
-			<section 
-				data-markdown="temario.md" 
-				data-separator="^\n\n\n" 
-				data-separator-vertical="^\n\n"
-				data-separator-notes="^Note:" 
-				data-charset="utf-8">
-				
+			<section data-markdown="contenido/calendario.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"
+				data-separator-notes="^Note:" data-charset="utf-8">
+
+			</section>
+
+			<section data-markdown="contenido/temario.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"
+				data-separator-notes="^Note:" data-charset="utf-8">
+
 			</section>
 
 			<section>
-				Introducción
+				<section data-markdown>
+					## Introducción
+				</section>
+
+				<section data-markdown>
+					### [Historia - Origen](#)
+
+					- Netscape (93,94) - Orientado principalmente validación formularios - velocidad módem
+					- Primero nombrado Mocha, renombrado a LiveScript y finalmente a JavaScript (por Java de Sun por
+					alianza con Sun Microsystems)
+					- Netscape Enterprise Server - Server Side Scripting (95)
+					- Microsoft IE (96) - VBScript y JScript
+				</section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					### [Historia - Estandarización](#)
+
+					- 1996 - Netscape comienza la estandarización - ECMAScript
+					- 1997 - ECMAScript 1
+					- 1998 - ECMAScript 2
+					- 1999 - ECMAScript 3
+					- ECMAScript 4 - nunca lanzado
+					- 2009 - ECMAScript 2009 ó ES5
+					- 2015 - ECMAScript 2015 ó ES6
+
+					Note:
+					## JAVASCRIPT IMPLEMENTATIONS
+					Though JavaScript and ECMAScript are often used synonymously, JavaScript is much more than just
+					what is defined in ECMA-262. Indeed, a complete JavaScript implementation is made up of the fol-
+					lowing three distinct parts (see Figure 1-1):
+					- The Core (ECMAScript)
+					- The Document Object Model (DOM)
+					- The Browser Object Model (BOM)
+
+					What exactly does ECMA-262 specify if it doesn’t reference web browsers? On a very basic level, it
+					describes the following parts of the language:
+					- Syntax
+					- Types
+					- Statements
+					- Keywords
+					- Reserved words
+					- Operators
+					- Global objects
+
+					Fuente: Professional JavaScript for Web Developers, 4th Ed - pag 3 (50)
+				</section>
+
+				<section data-markdown>
+					### [Historia - Server Side](#)
+
+					- 2009 - NodeJS - creado por Ryan Dahl (2009) para solucionar C10K problem con el paradigma del
+					Event Loop evitando la ejecución secuencial (bloqueos)
+					- 2010 - Node Package Manager (npm)
+					- 2011 - versión para Windows de NodeJS
+				</section>
+				<section data-markdown="">
+					### [Historia - Server Side (Continuación)](#)
+
+					- 2013 - NodeJS v0.10
+					- 2015 - NodeJS v0.12
+					- 2015 - NodeJS v4 - Codename Argon
+					- 2015 - NodeJS v5
+					- 2016 - NodeJS v6 - Codename Boron
+					- 2016 - NodeJS v7
+					- 2017 - NodeJS v8 - Codename Carbon
+					- 2018 - NodeJS v10 LTS - Codename Dubnium
+					- 2019 - NodeJS v12 LTS - Codename Erbium
+					- 2019 - NodeJS v13
+				</section>
 			</section>
 
 			<section data-markdown>
+				## [Motores más conocidos]()
+
+				- Blink/V8 (Google)
+				- Gecko/SpiderMonkey (Mozilla)
+				- WebKit/JavaScriptCore (Apple)
+				- Chakra (Microsoft)
+				- Hermes (Facebook - React Native)
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
 				## [Usos de Javascript](#)
-				
-				- Web 
-				- Escritorio 
-				- Servidor 
-				- Desarrollo Mobile 
+
+				- Web
+				- Escritorio
+				- Servidor
+				- Desarrollo Mobile
 				- Otros (IoT, etc)
+
+				Note:
+				Escritorio - https://electronjs.org/
+			</section>
+
+			<section data-background-iframe="contenido/compatibilidad-browser.html" data-background-interactive>
+				<div
+					style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+					<h4>
+						<a target="_blank" href="https://www.w3schools.com/js/js_versions.asp">
+							https://www.w3schools.com/js/js_versions.asp
+						</a>
+					</h4>
+					<p>Muestra el soporte de ECMAScript por los distintos navegadores y sus versiones.</p>
+				</div>
 			</section>
 
 			<section>
-				<h2>ECMAScript</h2>
-
-				<ul>
-					<li>
-						<a href="https://node.green/">Soporte de Funcionalidades</a>
-					</li>
-				</ul>
+				<section data-background-interactive data-background="contenido/images/ES-vs-Browser-1.png"
+					data-background-size="800px">
+				</section>
+				<section data-background-interactive data-background="contenido/images/ES-vs-Browser-2.png"
+					data-background-size="800px">
+				</section>
 			</section>
 
 			<section data-background-iframe="https://node.green/" data-background-interactive>
-				<div style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
-						<h4>https://node.green/</h4>
-						<p>Muestra el cruce de las funcionalidades y el soporte por versión de NodeJS.</p>
-					</div>
+				<div
+					style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 20px; text-align: left;">
+					<h4>
+						<a target="_blank" href="https://node.green/">
+							https://node.green/
+						</a>
+					</h4>
+					<p>Muestra el cruce de las funcionalidades y el soporte por versión de NodeJS.</p>
+				</div>
 			</section>
 
 			<section>
-				Tipos de Datos
+				<section data-markdown="">
+					## [ENV SETUP]()
+
+					- NodeJS (min: v10)
+					- Chrome (chrome://version)
+					- Terminal
+					- Editor (VS Code)
+					- GIT
+
+					Note:
+					Revisar la compatibilidad con ES6 al menos y acceso desde la consola a npm, node y git.
+				</section>
+				<section data-markdown="">
+					## [Hola Mundo!]()
+					
+					- NodeJS interactivo
+					- NodeJS con archivo
+					- Chrome
+				</section>				
+				<section data-markdown="">
+					## [NodeJS Interactivo]()
+
+					```bash
+					$ node -i
+					> let saludo = "Hola Mundo!";
+					> console.log(saludo);
+					```					
+				</section>
+				<section data-markdown="">
+					## [NodeJS Archivo]()
+
+					- Crear archivo [saludo.js]()
+					- Insertar código HolaMundo
+					- Ejecutar desde consola
+
+					```bash
+					$ node saludo.js					
+					Hola Mundo!
+					```		
+				</section>
+				<section data-markdown="">
+					## [Chrome]()
+
+					- Ctrl + Shift + i
+					- o Menú "Developers Tools"
+					- Ingresar código en pestaña "Console"					
+				</section>
 			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Sintaxis]()
+
+					- Case Sensitive | test != Test
+					- [Palabras reservadas](https://www.w3schools.com/js/js_reserved.asp)
+					- Identificadores: 1era letra puede ser:
+						* letra (a-z)
+						* _
+						* $
+				</section>
+
+				<section data-markdown="">
+					## [Sintaxis]()
+
+					- Por convención camelCase (buena práctica)
+					- Declaraciones terminan en ;
+				</section>
+
+
+				<section data-markdown="">
+					## [Comentarios]()
+
+					```javascript
+					// soy un comentario de una línea
+					var uno = 1;
+					/*
+					soy un
+					comentario
+					de varias líneas
+					*/
+					```
+				</section>
+
+				<section data-markdown="">
+					## [Bloques]()
+
+					```javascript
+					if (valido) {
+						obtenDatos();
+						login = true;
+						log("usuario ingreso a "+ fechaHora);
+					} else {
+						log("intento fallido de ingreso al sistema");
+					}
+
+					// También válido, pero no recomendado
+					if(valido)
+						loginValido();
+					else 
+						loginError();
+					```
+				</section>
+
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Tipos de Datos (ES6)]()
+					
+					* [Primitivos]()
+						- Undefined
+						- Null
+						- Boolean
+						- String 
+						- Number 				
+						- Symbol
+					* [Complejo]()
+						- Object 
+				</section>
+				<section data-markdown="">
+					## Tipos de Datos (ES6)
+						
+					```javascript					
+					let mensaje = "lorem ipsum";
+					let anoCreacion = 1987;
+					let sinDefinir;
+					let esVerdad = true;
+					console.log(typeof esVerdad); // "boolean"
+					console.log(typeof mensaje); // "string"
+					console.log(typeof anoCreacion); // "number"
+					console.log(typeof sinDefinir); // "undefined"
+					console.log(sinDefinir); // "undefined"
+					console.log(typeof noExiste); // "undefined"
+					console.log(noExiste); // ERROR
+					```
+				</section>
+				<section data-markdown="">
+						## Undefined y Null
+						
+						- Null es para Objetos						
+						- Null se debe asignar a variables que serán objetos
+						- No es recomendable asignar Undefined
+
+						```javascript					
+						let car = null;						
+						let sinDefinir;
+						console.log(typeof car); // "object"						
+						console.log(typeof sinDefinir); // "undefined"
+						console.log(car); // null
+						console.log(sinDefinir); // undefined
+						```
+					</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Variables y Constantes]()
+					
+					- var (desde el comienzo de JS)
+					- let (desde ES6)
+					- const (desde ES6)
+				</section>				
+				<section data-markdown="">
+					## [Recomendaciones]()
+					
+					- No usar var 
+					- Preferir const sobre let 
+				</section>
+				<section data-markdown="">
+					## [Constantes]()
+					
+					```javascript					
+					// Ej1
+					const age = 26;
+					age = 36; // TypeError: assignment to a constant
+
+					// Ej2. 
+					const nombre = "Juan";
+					if(true) {
+						nombre = "Ramón"; // genera error
+					}
+					console.log(nombre);
+
+					// Ej3. alcance por bloques 
+					const nombre = "Juan";
+					if(true) {
+						const nombre = "Ramón"; // NO genera error
+					}
+					console.log(nombre);
+					```
+				</section>
+				<section data-markdown="">
+					## [var y let]()
+
+					```javascript
+					var saludo = "holi";
+					var saludo = "Holi"; // let generaría error
+
+					function saludar() {
+						var saludo = "hola";
+						console.log(saludo+"\n");
+					}
+
+					saludar();
+					console.log(saludo);
+
+					// hola
+					// Holi 
+					```
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Operadores Aritméticos]()
+
+					- = (Asignación)
+					- \- (Resta)
+					- \+ (Suma)
+					- \* (Multiplicación)
+					- ** (Exponente)
+					- / (División)
+					- % (Módulo o Residuo)
+					- ++ (Incremento)
+					- -- (Decremento)
+				</section>
+				<section data-markdown="">
+					## [Operadores Comparación]()
+	
+					- == (Igual)
+					- === (Igual valor e igual tipo)
+					- != (no igual)
+					- !== (valor no igual ni igual tipo)
+					- \> (mayor que)
+					- \>= (mayor o igual que)
+					- &lt; (menor que)
+					- &lt;= (menor o igual que)
+					- ? (operador ternario)
+				</section>
+			</section>
+
+			<section data-markdown="">
+				## Funciones
+				```javascript
+				// sintaxis
+				function myFunction(parametro1, parametro2) {
+
+				}
+
+				// ej. 1
+				function sumar(uno, dos) {
+					return uno + dos;
+				}
+
+				// ej. 2
+				function mostrar(texto) {
+					console.log(texto);
+				}
+				```
+			</section>
+
+			<section data-markdown="">
+				## CLI Programa
+
+				```bash
+				$ node sumar.js 10 + 20  
+				10 + 20  
+				30   
+				```
+
+				```javascript
+				// index 0 = node 
+				// index 1 = sumar.js 
+				let a = parseInt(process.argv[2]);
+				let b = parseInt(process.argv[3]);
+				console.log(a, "+", b);
+				console.log(a + b);
+				```
+			</section>
+
+			<section>
+				<section data-markdown="contenido/html-script.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"
+				data-separator-notes="^Note:" data-charset="utf-8">
+					
+				</section>
+	
+				<section data-markdown="">
+					## [Document Object Model (DOM)]()
+
+					- Es una API para XML que fue extendida para HTML
+					- Mapea la página entera hacia una jerarquía de nodos
+					- Permite al desarrollador un control sobre el contenido y estructura
+				</section>
+
+				<section data-background="contenido/images/dom.png" data-background-size="500px">
+					
+				</section>
+			</section>
+
+			<section data-markdown="">
+				## Ejercicio Calculadora
+			</section>
+
+			<section data-markdown>
+				## Recursos
+
+				- [developer.mozilla.org/](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+				- [www.w3schools.com/](https://www.w3schools.com/js/default.asp)
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				## [Herramientas]()
+
+				- VS Code
+				- npm
+				- babel
+				- webpack
+
+			</section>
+
+
 		</div>
 	</div>
 
