@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="description" content="Curso de Javascript Fullstack">
+	<meta name="author" content="Santiago Neira">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Curso Javascript</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Javascript</h1>
+				<h3><a href="#">Clase 2</a></h3>
+				<p>
+					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
+							Neira</a><br /><br />
+						<a target="_blank"
+							href="https://stgoneira.github.io/javascript/ppt/?print-pdf&showNotes=true"><i
+								class="fas fa-print"></i></a>
+					</small>
+				</p>
+			</section>
+			<section data-markdown>
+				## [Objetivos]() 
+
+				- Entender el DOM
+				- Utilizar el DOM desde JS 
+				- aplicar if / else / switch / op. ternario
+				- aplicar for / for in / for of 
+				- aplicar while / do while 
+				- conocer la sintaxis POO
+				- crear app web utilizando los conceptos
+			</section>
+			<section data-markdown>
+				## [Clase Anterior]()
+
+				- Historia de Javascript 
+				- Estándares
+				- Contextos de Javascript 
+				- Sintaxis Básica
+			</section>
+
+			<!-- DOM-->
+			<section>
+				<section data-markdown>
+					## [Document Object Model (DOM)]() 
+
+					- API para XML
+					- Fue extendida para usar en HTML 
+					- Mapea una página HTML a una jerarquía de nodos		
+				</section>
+				<section data-markdown="">
+					## [Ejemplo]()
+
+					```html						 				
+					&lt;html&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;head&gt;        &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;title&gt;Sample Page&lt;/title&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/head&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;body&gt;        &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;p&gt; Hello World!&lt;/p&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/body&gt; &#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/html&gt;					
+					```
+				</section>
+				<section data-background="contenido/images/dom.png" data-background-size="500px">
+					
+				</section>
+				<section data-markdown="">
+					## [DOM Levels]()
+
+					- [DOM Level 0](): No es un estándar, usado en Netscape 2 y 4
+					- [DOM Level 1](): 1998, habilidad para cambiar el documento completo de HTML
+					- [DOM Level 2](): 2001, Introducción de la función "getElementsById", event model y soporte para namespaces 
+					- [DOM Level 3](): XPath, keyboard event handling 
+				</section>
+				<section data-background="contenido/images/DOM-compliance.png" data-background-size="800px">
+					
+				</section>
+				<section data-markdown="">
+					```javascript
+					let nodo = document.getElementById("id-elemento");
+					nodo.innerHtml = "lalala";
+					let formInput = document.forms[0] ... 
+					cambiar CSS
+					validar
+					etc
+					```
+				</section>
+			</section>
+			<!-- end DOM -->
+
+			<!-- BOM -->
+			<!-- TODO: completar tema BOM -->
+			<!-- end BOM -->
+
+
+		</div><!-- end .slides -->
+	</div><!-- end .reveal -->
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>
