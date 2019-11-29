@@ -46,22 +46,12 @@
 					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
 							Neira</a><br /><br />
 						<a target="_blank"
-							href="https://stgoneira.github.io/javascript/ppt/?print-pdf&showNotes=true"><i
+							href="https://stgoneira.github.io/javascript/ppt/clase2.html?print-pdf&showNotes=true"><i
 								class="fas fa-print"></i></a>
 					</small>
 				</p>
 			</section>
-			<section data-markdown>
-				## [Objetivos]() 
 
-				- Entender el DOM
-				- Utilizar el DOM desde JS 
-				- aplicar if / else / switch / op. ternario
-				- aplicar for / for in / for of 
-				- aplicar while / do while 
-				- conocer la sintaxis POO
-				- crear app web utilizando los conceptos
-			</section>
 			<section data-markdown>
 				## [Clase Anterior]()
 
@@ -71,6 +61,236 @@
 				- Sintaxis Básica
 			</section>
 
+			<section data-markdown>
+				## [Objetivos]() 
+
+				- Entender el DOM
+				- Utilizar el DOM desde JS 
+				- Aplicar if / else / switch / op. ternario
+				- Aplicar for / for in / for of 
+				- Aplicar while / do while 
+				- Utilizar funciones para trabajar con Strings
+				- Utilizar funciones para trabajar con Arrays
+				- crear app web utilizando los conceptos
+			</section>
+			
+
+			<!-- Flow Control Statements -->
+			<section>
+				<section data-markdown="">
+					## [if / else if / else]()
+					
+					```javascript
+					if( esValido ) {
+						mostrarMensajeExitoso();
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## [if / else if / else]()
+					
+					```javascript
+					if( esValido ) {
+						mostrarMensajeExitoso();
+					} else {
+						mostrarMensajeError();
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## [if / else if / else]()
+					
+					```javascript
+					if( esValido ) {
+						mostrarMensajeExitoso();
+					} else if ( esAceptable ) {
+						mostrarAdvertencias();
+					} else {
+						mostrarMensajesError();
+					}
+					```
+				</section>
+			</section>			
+			<!-- End Flow Control Statements -->
+
+			<!-- Loops -->
+			<section>
+				<section data-markdown="">
+					## for loop 
+
+					```javascript
+					let count = 10;
+					for (let i = 0; i < count; i++) {
+						console.log(i);
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## for in loop 
+
+					Recorre las propiedades enumerables de un objeto
+
+					```javascript
+					let car = {brand: "Renault", model: "Symbol", year: 2015};
+					for (prop in car) {
+						console.log(prop, car[prop]);
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## for of loop 
+					
+					- Nuevo en ES6
+					- Es usado para recorrer los elementos dentro de un objeto iterable.
+					- Requiere que el objeto sea [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol)
+
+					```javascript		
+					// el array es iterable por defecto			
+					let obj = ["Fiat", "500", "white"]; 
+					for (prop of obj) {
+						console.log(prop);
+					}
+					```
+				</section>
+
+
+			</section>
+
+
+			<section>
+				<section data-markdown="">
+					## do-while 
+
+					```javascript
+					do {
+						mostrarVideo();
+					} while ( usuarioTieneCredito );
+					```
+				</section>
+
+				<section data-markdown="">
+					## while 
+
+					```javascript
+						let i = 0;
+						while (i < 10) {
+							i += 2;
+						}
+					```
+				</section>
+
+			</section>
+			<!-- End Loops -->
+
+			<!-- Strings -->
+			<section>
+				<section data-markdown="">
+					## [Strings]() 
+
+					- Representan una secuencia de 0 ó más caracteres unicode (16 bits).
+					- Se pueden representar con comillas dobles("), simples (') o backticks (`)
+
+					```javascript
+					let comSimple = 'hola, soy un string con comillas simples';
+					let comDobles = "Hola, soy un string con comillas dobles"
+					let comBack = `Hola, soy un string con backticks`
+					```
+		 
+				</section>
+				<section>
+					<h3>Caracteres Literales</h3>
+					<img src="contenido/images/string-literals.png" style="height: 80%;" />
+				</section>
+				<section data-markdown="">
+					## [Concatenar Strings]() 
+
+					- Los Strings son inmutables al igual que en Java 
+					- Cuando se concatenan se crea un nuevo objeto en memoria 
+					- Para concatenar se utilizar el operador +
+
+					```javascript
+					let a = "Mi nombre es ";
+					let b = a + "Juanito";
+					console.log(b);
+					```
+				</section>
+				<section data-markdown="">
+					## [Interpolación]() 
+
+					- Para interpolar valores debes usar backticks (`)
+					- Las variables a interpolar deben ir de la siguiente forma: ${ variable }
+
+					```javascript
+					let val1 = 80;
+					let val2 = "hrs";
+					let row = `
+						<td>${val1}</td>
+						<td>${val2}</td>
+					`;
+					```
+				</section>
+				<section data-markdown="">
+					## Convertir a String
+
+					```javascript
+					let age = 31;
+					let ageAsString = age.toString();
+					console.log(typeof ageAsString);
+
+					let formValido = true;
+					let formValidoAsString = formValido.toString();
+					console.log(typeof formValidoAsString);
+					```
+				</section>
+				<section data-markdown="" data-separator="^\n\n\n" data-separator-vertical="^\n\n"
+				data-separator-notes="^Note:" data-charset="utf-8">
+					## [Propiedades y Funciones]()
+
+					```javascript
+					"hola".length // 4
+
+					"hi".length // 2
+					
+					"   Juan Andrés  ".trim() // "Juan Andrés" 
+					
+					"12345678-5".split("")
+					// ["1", "2", "3", "4", "5", "6", "7", "8", "-", "5"]
+					```
+					
+
+
+					```javascript
+					"hola".search("o") // 1
+					"hola".search("h") // 0
+
+					"El perro corre contento".replace("perro", "conejo") 
+					// "El conejo corre contento"
+
+					"1234567890".slice(2,9) // from inclusivo,  to exclusivo
+					// "3456789"
+					"1234567890".slice(0, -5)
+					// "12345"
+
+					"chao ".repeat(3)
+					// "chao chao chao "
+					```
+					- [Más métodos (ver enlace)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#Methods)
+				</section>
+			</section>
+			<!-- End Strings -->
+
+			
+			<!-- Arrays -->
+			<section>
+				<section data-markdown="">
+					## Arrays 
+				</section>
+				<section data-markdown="">
+					## Arrays 
+				</section>
+			</section>
+			<!-- End Arrays -->
+
 			<!-- DOM-->
 			<section>
 				<section data-markdown>
@@ -78,7 +298,8 @@
 
 					- API para XML
 					- Fue extendida para usar en HTML 
-					- Mapea una página HTML a una jerarquía de nodos		
+					- Mapea una página HTML a una jerarquía de nodos
+					- Permite al desarrollador un control sobre el contenido y estructura		
 				</section>
 				<section data-markdown="">
 					## [Ejemplo]()
@@ -86,7 +307,7 @@
 					```html						 				
 					&lt;html&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;head&gt;        &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;title&gt;Sample Page&lt;/title&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/head&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;body&gt;        &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;p&gt; Hello World!&lt;/p&gt;    &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/body&gt; &#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/html&gt;					
 					```
-				</section>
+				</section>				
 				<section data-background="contenido/images/dom.png" data-background-size="500px">
 					
 				</section>
@@ -97,6 +318,7 @@
 					- [DOM Level 1](): 1998, habilidad para cambiar el documento completo de HTML
 					- [DOM Level 2](): 2001, Introducción de la función "getElementsById", event model y soporte para namespaces 
 					- [DOM Level 3](): XPath, keyboard event handling 
+					- [Más info](https://developer.mozilla.org/fr/docs/DOM_Levels)
 				</section>
 				<section data-background="contenido/images/DOM-compliance.png" data-background-size="800px">
 					
@@ -117,6 +339,80 @@
 			<!-- BOM -->
 			<!-- TODO: completar tema BOM -->
 			<!-- end BOM -->
+
+			<!-- Ejercicios -->
+			<section>
+				<section data-markdown="">
+					## Ejercicio 1 - DOM 
+
+					- CSS 
+					- HTML 
+					
+				</section>
+			</section>
+			<section>
+				<section data-markdown="">
+					## [Ejercicio 2 - RUT]() 
+
+					- Crear una función en JS que calcule el DV del RUT
+					- Cree otra función que valide un rut
+					- Se sugiere utilizar el sgte [algoritmo](https://es.wikipedia.org/wiki/Rol_%C3%9Anico_Tributario) 
+				</section>
+				<section data-markdown="">
+					## Ejercicio 2 - RUT 
+
+					```javascript
+					function calcularDv(rut) {
+						console.log("Parámetro original RUT", rut);
+						
+						// convierte el rut a un array de strings
+						let aRut = rut.split("");
+						console.log("RUT convertido a array", aRut);
+					
+						// invierte el orden del array
+						let rRut = aRut.reverse();
+						console.log("Array con orden inverso", rRut);
+					
+						// según el algoritmo para calcular el DV
+						// se utiliza la siguiente serie para multiplicar
+						let arrMul = [2, 3, 4, 5, 6, 7];
+						// sintaxis para copiar rápidamente un array
+						let arrMulCopy = [...arrMul]; 
+						console.log("Array copiado", arrMulCopy);
+						
+						// recorremos y sumamos las multiplicaciones
+						let suma = 0;
+						for (let n in rRut) {
+							let mul = rRut[n];
+							if( arrMulCopy.length == 0 ) {
+								arrMulCopy = [...arrMul];
+							}
+							suma += arrMulCopy.shift() * mul;
+						}
+						let modulo = suma % 11;
+						let resultado = 11 - modulo;
+						if( resultado == 10 ) {
+							return "k";
+						} else if( resultado == 11 ) {
+							return 0;
+						}
+						return resultado;
+					}
+					
+					let rut = process.argv[2];
+					let dv = calcularDv(rut);
+					console.log("RUT", rut, "-", dv);
+					```
+				</section>
+			</section>
+			<section>
+				<section data-markdown="">
+					## Ejercicio 2 - RUT + DOM  
+
+					- Validador de RUT 
+					- Form dinámico con DOM
+				</section>
+			</section>
 
 
 		</div><!-- end .slides -->
