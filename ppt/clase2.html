@@ -381,14 +381,46 @@
 					
 				</section>
 				<section data-markdown="">
+					## [Ejemplos Manipulación DOM]()
+					
+					### HTML 
+					```html 
+					&lt;div id=&quot;id-elemento&quot;&gt;asdf&lt;/div&gt;
+					```
+					### Javascript 
 					```javascript
 					let nodo = document.getElementById("id-elemento");
-					nodo.innerHtml = "lalala";
-					let formInput = document.forms[0] ... 
-					cambiar CSS
-					validar
-					etc
+					nodo.innerHTML = "Lorem Ipsum Dolor";
 					```
+				</section>
+				<section data-markdown="">
+					## [Más formas de acceso a los nodos]() 
+
+					```javascript
+					document.forms[0].elements[0].style.backgroundColor="red";
+					document.getElementsByTagName("input");
+					document.getElementsByClassName("formulario");
+					```
+				</section>
+				<section data-markdown="">
+					## [Cambiar el CSS de un elemento]() 
+
+					```javascript
+					nodo.style.cssText = "background-color: red;color: white; ";
+					nodo.setAttribute('style', 'background-color: red; color: white;');
+					nodo.style.backgroundColor = "red"; // camelCase properties 
+					nodo.style.color = "white";
+					```
+					
+					- [Más información sobre métodos](https://www.w3schools.com/js/js_htmldom_document.asp)
+				</section>
+				<section data-markdown="">
+					## [Ejercicio]() 
+
+					- Cree un formulario con al menos 2 inputs 
+					- Cambie el estilo CSS de los inputs con JS
+					- Utilice getElementsByTagName()
+					- Utilice loops (for o while)
 				</section>
 			</section>
 			<!-- end DOM -->
@@ -400,11 +432,41 @@
 			<!-- Ejercicios -->
 			<section>
 				<section data-markdown="">
-					## Ejercicio 1 - DOM 
+					## [Ejercicio 1 - DOM]() 
 
-					- CSS 
-					- HTML 
+					- Crear formulario de registro de usuario con los siguientes campos:
+						* Correo 
+						* Contraseña
+						* Ciudad
+					- Validar que el largo de la contraseña sea de al menos 6 caracteres 
+					- En el caso que sea válida la contraseña, poner de color verde el input 
+					- En caso contrario, poner de color rojo					
+				</section>
+				<section data-markdown="">
+					## Ejercicio 1 
+
+					```html 
+					&lt;!DOCTYPE html&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;html lang=&quot;en&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;head&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta charset=&quot;UTF-8&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;title&gt;Formulario de Registro&lt;/title&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/head&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;body&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;form&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Correo Electr&oacute;nico:  &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;input id=&quot;input-correo&quot; name=&quot;input-correo&quot; type=&quot;text&quot; /&gt;&lt;br /&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Contrase&ntilde;a: &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;input type=&quot;password&quot; name=&quot;input-password&quot; id=&quot;input-password&quot; /&gt; &lt;br /&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Ciudad: &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;select&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;option&gt;Santiago&lt;/option&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;option&gt;Vi&ntilde;a del Mar&lt;/option&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/select&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;br /&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;br /&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&lt;button type=&quot;button&quot; onclick=&quot;validar()&quot;&gt;Registrar&lt;/button&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/form&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;script src=&quot;form-registro.js&quot;&gt;&lt;/script&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/body&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/html&gt;
+					```
+				</section>
+				<section data-markdown="">
+					## javascript
+
+					```javascript
+					function validar() {
+						let inputPassword = document.getElementById("input-password");
+						let password = inputPassword.value;
+						let largoPassword = password.length;
+						console.log("Largo de la password es de ", largoPassword);
 					
+						if( largoPassword < 6 ) {
+							// password demasiado corta
+							inputPassword.style.cssText = "background-color: red;";
+						} else {
+							inputPassword.style.cssText = "background-color: green;";
+						}
+					}
+					```
 				</section>
 			</section>
 			<section>
@@ -464,10 +526,10 @@
 			</section>
 			<section>
 				<section data-markdown="">
-					## Ejercicio 2 - RUT + DOM  
+					## [Ejercicio 3 - RUT + DOM]()  
 
-					- Validador de RUT 
-					- Form dinámico con DOM
+					- Agregue el campo RUT al formulario de registro 
+					- Valide que la contraseña y RUT sean correctos
 				</section>
 			</section>
 
