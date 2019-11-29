@@ -283,10 +283,67 @@
 			<!-- Arrays -->
 			<section>
 				<section data-markdown="">
-					## Arrays 
+					## [Arrays]() 
+
+					- Son listas ordenadas de datos 
+					- Los datos pueden ser de distintos tipos 
+					- Los arrays en JS son dimensionados automáticamente
 				</section>
 				<section data-markdown="">
-					## Arrays 
+					## Arrays Sintaxis 
+
+					```javascript
+					let cars = new Array();
+					console.log(cars.length) // 0
+					cars.push("bmw");
+					cars.push("audi");
+					console.log(cars.length) // 2
+
+					// mezcla de tipos es válida
+					let mixedArr = ["bmw", 2, "rojo", true];
+					console.log(mixedArr[1]); // 2
+					console.log(mixedArr[2]); // "rojo"
+					
+					let colors = new Array("red", "blue", "white");
+					let colors = ["red", "blue", "white"]; // sintaxis alternativa
+
+					let fixed = new Array(3); // crea un array para 3 elementos 
+					fixed.length // 3
+					```
+				</section>
+				<section data-markdown="">
+					## Métodos 
+
+					```javascript
+					let frutas = ["manzanas", "peras", "limones", "kiwis", "damascos"];
+					let copiaFrutas = frutas.slice();
+					let manzanas = frutas.shift(); // remueve y devuelve el 1er elemento 
+					let damascos = frutas.pop(); // remueve y devuelve el último item 
+					console.log(manzanas);
+					console.log(damascos);
+					frutas.forEach( function(item, index, arr){
+						console.log(item, index);
+					} );
+					// peras, limones, kiwis
+					console.log(copiaFrutas);
+					// ["manzanas", "peras", "limones", "kiwis", "damascos"]					
+					```
+
+					- [ver más métodos acá](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+				</section>
+				<section data-markdown="">
+					## [Arrays Multidimensionales]() 
+
+					```javascript
+					// representa las notas de un alumno en los 2 semestre del año 2018
+					// de la asignatura de "Desarrollo Web"
+					let notasAgnoJuan = [
+						[4.5, 6.5, 5.4], // semestre 1
+						[3.0, 2.5, 6.5] // semestre 2
+					];
+					console.log( notasAgnoJuan[0][0]  ); // 1era nota de Juan en el año
+					console.log(notasAgnoJuan);
+					```
 				</section>
 			</section>
 			<!-- End Arrays -->
