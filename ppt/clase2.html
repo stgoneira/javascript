@@ -46,8 +46,7 @@
 					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
 							Neira</a><br /><br />
 						<a target="_blank"
-							href="https://stgoneira.github.io/javascript/ppt/clase2.html?print-pdf&showNotes=true"><i
-								class="fas fa-print"></i></a>
+							href="?print-pdf"><i class="fas fa-print"></i></a>
 					</small>
 				</p>
 			</section>
@@ -110,6 +109,42 @@
 					}
 					```
 				</section>
+				<section data-markdown="">
+					## [Ternary Operator]() 
+
+					- Permite rápidamente asignar un valor a una variable según una condición 
+
+					```javascript
+					let estilo = isUserEnabled() ? 'color: green;' : 'color: gray;' ;
+
+					// en vez de
+					let estilo;
+					if( isUserEnabled() ) {
+						estilo = 'color: green;';
+					} else {
+						estilo = 'color: gray; ';
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## [switch]() 
+
+					keywords: switch, case, break, default 
+					```javascript
+					let opcionMenu = getMenuOption();
+					switch(opcionMenu) {
+						case 'Inicio':
+							irPantallaInicio();
+							break;
+						case 'Jugar':
+							playGame();
+							break;
+						default:
+							mostrarMensajes();
+					}
+					```
+				</section>
+				
 			</section>			
 			<!-- End Flow Control Statements -->
 
@@ -152,8 +187,35 @@
 					}
 					```
 				</section>
+				<section data-markdown="">
+					## [Break y Continue]() 
+					- Break permite salir de un loop 
+					- Continue permite pasar a la siguiente iteración 
+				</section>
+				<section data-markdown="">
+					## Break 
 
-
+					```javascript
+					for(let i = 0; i < 10; i++) {
+						if( i == 5) {
+							break;
+						}
+						console.log( "Iteración: ", i );
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## Continue 
+					
+					```javascript
+					for(let i = 0; i < 10; i++) {
+						if( i == 5) {
+							continue;
+						}
+						console.log( "Iteración: ", i );
+					}
+					```
+				</section>
 			</section>
 
 
