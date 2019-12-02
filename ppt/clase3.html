@@ -76,6 +76,7 @@
 				<section data-markdown>
 					## [Objetivos]() 
 
+					- Fechas 
 					- Programación Orientado a Objetos 
 					- Typescript 
 					- Strict Mode 
@@ -83,7 +84,96 @@
 				</section>
 			</section>
 
+			<!-- Boolean -->
+			<section>
+				<section data-markdown="">
+					## Boolean 
+				</section>
+			</section>
+			<!-- END Boolean -->
+
+			<!-- Fechas -->
+			<section>
+				<section data-markdown="">
+					## [Fechas]()  
+				</section>
+			</section>
+			<!-- END Fechas -->
+
+			<!-- Copiando Valores -->
+			<section>
+				<section data-markdown="">
+					- Por valor 
+					- Por referencia
+					- Ejemplos 
+					- Clonar Objeto 
+				</section>
+				<section data-markdown="">
+					## Por valor 
+
+					```javascript
+					let num1 = 5; 
+					let num2 = num1;
+					num1 = 10;
+					
+					console.log("num1 = ", num1); // 10
+					console.log("num2 = ", num2); // 5
+					```
+				</section>
+				<section data-markdown="">
+						## Por referencia 
+	
+						```javascript
+						let obj1 = new Object(); 
+						let obj2 = obj1;
+
+						obj1.nombre = "Ramón";
+												
+						console.log("obj1 = ", obj1.nombre); // "Ramón"
+						console.log("obj2 = ", obj2.nombre); // "Ramón"
+						```
+					</section>
+					<section>
+						<img src="contenido/images/obj-reference.png" style="height: 90%; width: auto;" />
+					</section>
+			</section>			
+			<!-- END Copiando Valores -->
+
+
 			<!-- POO -->
+			<section>
+				<section data-markdown="">
+					## Object type 
+
+					```javascript
+					let person = new Object(); 
+					person.name = "Nicolás";
+					person.age = 31;
+
+					// lo mismo que 
+					let person = {
+						name: "Nicolás",
+						age: 31
+					};
+					```
+				</section>
+				<section data-markdown="">
+					## instanceof 
+
+					```javascript
+					let arr = [1,2,3];
+					let obj = new Object();
+					obj.nombre = "Juanito";
+					let regex = /ab+c/;
+
+					console.log( arr instanceof Array ); // true 
+					console.log( obj instanceof Object ); // true 
+					console.log( regex instanceof RegExp ); // true 
+					console.log( arr instanceof Object ); // true 
+					console.log( obj instanceof Array ); // false 
+					```
+				</section>
+			</section>
 			<!-- END POO -->
 
 			<!-- Typescript -->
