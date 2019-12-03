@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="description" content="Curso de Javascript Fullstack">
+	<meta name="author" content="Santiago Neira">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Curso Javascript</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Javascript</h1>
+				<h3><a href="#">Clase 4</a></h3>
+				<p>
+					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
+							Neira</a><br /><br />
+						<a target="_blank"
+							href="?print-pdf"><i class="fas fa-print"></i></a>
+					</small>
+				</p>
+			</section>
+
+			
+			<!-- Typescript -->
+			<!-- END Typescript -->
+
+			<!-- Strict Mode -->
+			<!-- END Strict Mode -->
+
+			<!-- Funciones API local -->
+			<!-- END Funciones API local -->
+			
+		</div><!-- end .slides -->
+	</div><!-- end .reveal -->
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>

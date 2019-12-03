@@ -71,31 +71,73 @@
 							* Break & Continue
 						- Faltó realizar ejercicio final del RUT
 		
-					</section>
-
-				<section data-markdown>
-					## [Objetivos]() 
-
-					- Fechas 
-					- Programación Orientado a Objetos 
-					- Typescript 
-					- Strict Mode 
-					- Funciones estándar del lenguaje 
-				</section>
+					</section>				
 			</section>
+			<section data-markdown>
+				## [Objetivos]() 
 
-			<!-- Boolean -->
-			<section>
-				<section data-markdown="">
-					## Boolean 
-				</section>
+				- Utilizar clase Date 
+				- Entender POO en los distintos estándares
+					* ES5
+					* ES6
+				- Utilizar nuevas funciones de la API DOM
+				- Conocer y Utilizar Bootstrapp CSS 
+				- Conocer Typescript 
 			</section>
-			<!-- END Boolean -->
-
+			
 			<!-- Fechas -->
 			<section>
 				<section data-markdown="">
 					## [Fechas]()  
+
+					- La clase Date representa un momento en el tiempo
+					- En un formato que es independiente a la plataforma
+					- Contiene un número que representa los milisegundos desde el 1ero de Enero 1970 UTC - [Unix Timestamp](https://es.wikipedia.org/wiki/Tiempo_Unix)
+				</section>
+				<section data-markdown="">
+					## Constructores 
+
+					```javascript
+					new Date();
+					new Date(value); // value: timestamp
+					new Date(dateString); // ISO-8601 o IETF Compliant RFC 2822
+					new Date(year, monthIndex [, day [, hours [, minutes [, seconds [, milliseconds]]]]]);
+					```
+				</section>
+				<section data-markdown="">
+					## Constructores 
+
+					```javascript
+					const a = new Date();
+					const b = new Date(2019, 1, 1); // año yyyy, mes: 0-11, día: 1-31
+					const c = new Date('1987-12-18'); // ISO 8601
+					console.log(a.toString());
+					console.log(b.toString());
+					console.log(c.toString());
+					```
+				</section>
+				<section data-markdown="">
+					## [Funciones]() 
+
+					```javascript 
+					date.getMonth(); // mes 0-11 
+					date.getDate(); // día del mes 1-31 
+					date.getDay(); // día de la semana 0-6, depende del locale 
+					date.getFullYear(); // año en formato YYYY
+					date.getHours(); // hora en 0-23
+					date.getSeconds(); // segundos 0-59  
+					date.getMilliseconds(); // milisegundos 0-999
+					```
+				</section>
+				<section data-markdown="">
+					## [Math Dates]() 
+
+					```javascript
+					let hoy = new Date();
+					let vencimientoFactura = new Date();
+					vencimientoFactura.setDate( hoy.getDate() + 30 ); // suma 30 días 
+					console.log( vencimientoFactura );
+					```
 				</section>
 			</section>
 			<!-- END Fechas -->
@@ -103,10 +145,10 @@
 			<!-- Copiando Valores -->
 			<section>
 				<section data-markdown="">
+					## [Copiar]()
 					- Por valor 
 					- Por referencia
-					- Ejemplos 
-					- Clonar Objeto 
+					- Clonar Objetos
 				</section>
 				<section data-markdown="">
 					## Por valor 
@@ -136,15 +178,38 @@
 					<section>
 						<img src="contenido/images/obj-reference.png" style="height: 90%; width: auto;" />
 					</section>
+					<section data-markdown="">
+						## Object.assign() 
+
+						```javascript 
+						let a = new Object();
+						a.nombre = "Juan";
+						a.id = 12345678;
+						b = new Object();
+						b = Object.assign(b, a);
+						b.nombre = "Ramón";
+
+						console.log( a );
+						console.log( b );
+						```
+					</section>
 			</section>			
 			<!-- END Copiando Valores -->
 
 
-			<!-- POO -->
+			<!-- Objetos Simples -->
 			<section>
 				<section data-markdown="">
-					## Object type 
-
+					## [Objetos Sencillos]() 
+					
+					- JS permite crear objetos de manera sencilla
+					- la creación de sus métodos y propiedades puede ser incremental
+					- pero carece de estructura
+					- y también carece de comprobación de tipos
+				</section>
+				
+				<section data-markdown="">
+					## [Sintaxis]()
 					```javascript
 					let person = new Object(); 
 					person.name = "Nicolás";
@@ -155,6 +220,21 @@
 						name: "Nicolás",
 						age: 31
 					};
+					```
+				</section>
+				<section data-markdown="">
+					## [Sintaxis]() 
+					```
+					let rut = {
+						rut: 12345678,
+						dv: 5,
+						format: function() {
+							return `${this.rut}-${this.dv}`;
+						}
+					}
+					rut.format(); // "12345678-5"
+					rut.rut = 90999888;
+					rut.format(); // "90999888-5"
 					```
 				</section>
 				<section data-markdown="">
@@ -174,16 +254,107 @@
 					```
 				</section>
 			</section>
-			<!-- END POO -->
+			<!-- END Objetos Simples -->
 
-			<!-- Typescript -->
-			<!-- END Typescript -->
+			<!-- POO ES5 -->
+			<section>
+				<section data-markdown="">
 
-			<!-- Strict Mode -->
-			<!-- END Strict Mode -->
+				</section>
+				<section data-markdown="">
 
-			<!-- Funciones API local -->
-			<!-- END Funciones API local -->
+				</section>
+				<section data-markdown="">
+					## Ejemplo POO ES5 
+
+					```javascript
+					function PersonaES5(nombre, rut) {
+						this.nombre = nombre;
+						this._rut = rut; // al final se checkea con setRut()
+						this._dv;
+					
+						this.getRut = function() {
+							return this._rut;
+						};
+						this.setRut = function(rut) {
+							if( Number.isInteger(rut) && rut>1 ) {
+								this._rut = rut;
+							} else {
+								console.error("El RUT debe ser numérico y mayor que 0.");
+							}
+						};
+						this.getDv = function() {
+							if(this._dv == undefined) { 
+								this._dv = this.calcularDv();
+							} 
+							return this._dv;
+						}
+						this.calcularDv = function() {
+							return 'k'; // aca se debiese calcular el dígito verificador
+						};
+						this.format = function() {
+							const formatRut = this.getRut().toLocaleString("es-CL");
+							const formatDv = this.getDv().toUpperCase(); 
+							return `${this.nombre} ${formatRut}-${formatDv}`;
+						}
+					
+						// checks 
+						this.setRut(rut);
+					}
+					```
+				</section>
+			</section>
+			<!-- END POO ES5 -->
+
+			<!-- POO ES6 -->
+			<section>
+				<section data-markdown="">
+					## POO ES6 
+
+					- Field Declaration es una característica [experimental](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+					- Lorem ipsum 					
+				</section>
+				<section data-markdown="">
+					## POO ES6 
+
+					```javascript
+					class Persona {
+						constructor(nombre, rut) {
+							this.nombre = nombre;
+							this.rut = rut;
+							this._dv;
+						}
+						get rut() {
+							return this._rut;
+						}
+						set rut(rut) {
+							if( Number.isInteger(rut) && rut>1 ) {
+								this._rut = rut;
+							} else {
+								console.error("El RUT debe ser numérico y mayor que 0.");
+							}
+						}
+						get dv() {
+							if(this._dv == undefined) { 
+								this._dv = this.calcularDv();
+							} 
+							return this._dv;
+						}
+						calcularDv() {
+							return 'k'; // aca se debiese calcular el dígito verificador
+						}
+						format() {
+							const formatRut = this.rut.toLocaleString("es-CL");
+							const formatDv = this.dv.toUpperCase(); 
+							return `${this.nombre} ${formatRut}-${formatDv}`;
+						}
+					}
+					```
+				</section>
+			</section>
+			<!-- END POO ES6 -->
+
+			
 			
 		</div><!-- end .slides -->
 	</div><!-- end .reveal -->
