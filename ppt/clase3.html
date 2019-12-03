@@ -259,60 +259,87 @@
 			<!-- POO ES5 -->
 			<section>
 				<section data-markdown="">
+					## [POO ES5]()
 
+					- Uso de funciones para contener la clase
+					- Uso de objeto prototype para disponibilizar función a todos las instancias 
+					- En conjunción con la palabra clave new
+					- Por convención los nombre de estas clases-funciones están Capitalizadas
 				</section>
 				<section data-markdown="">
-
-				</section>
-				<section data-markdown="">
-					## Ejemplo POO ES5 
+					## Ejemplo POO ES5
 
 					```javascript
-					function PersonaES5(nombre, rut) {
+					function Persona(nombre, apellido) {
 						this.nombre = nombre;
-						this._rut = rut; // al final se checkea con setRut()
-						this._dv;
-					
-						this.getRut = function() {
-							return this._rut;
-						};
-						this.setRut = function(rut) {
-							if( Number.isInteger(rut) && rut>1 ) {
-								this._rut = rut;
-							} else {
-								console.error("El RUT debe ser numérico y mayor que 0.");
-							}
-						};
-						this.getDv = function() {
-							if(this._dv == undefined) { 
-								this._dv = this.calcularDv();
-							} 
-							return this._dv;
+						this.apellido = apellido;
+						this.getNombreCompleto = function() { // uso función anónima 
+							return `${this.nombre} ${this.apellido}`;
 						}
-						this.calcularDv = function() {
-							return 'k'; // aca se debiese calcular el dígito verificador
-						};
-						this.format = function() {
-							const formatRut = this.getRut().toLocaleString("es-CL");
-							const formatDv = this.getDv().toUpperCase(); 
-							return `${this.nombre} ${formatRut}-${formatDv}`;
-						}
-					
-						// checks 
-						this.setRut(rut);
 					}
+					let p = new Persona("Juan", "Valdés");
+					console.log( p.getNombreCompleto() );
 					```
 				</section>
+				<section data-markdown="">
+						## Ejemplo prototype
+	
+						```javascript
+						function Persona(nombre, apellido) {
+							this.nombre = nombre;
+							this.apellido = apellido;
+						}
+						// ¿ Qué pasa si no uso Prototype ?
+						Persona.prototype.getNombreCompleto = function() {
+							return `${this.nombre} ${this.apellido}`;
+						};
+						let p = new Persona("Juan", "Valdés");
+						console.log( p.getNombreCompleto() );
+						```
+					</section>
+				
 			</section>
 			<!-- END POO ES5 -->
 
 			<!-- POO ES6 -->
 			<section>
 				<section data-markdown="">
-					## POO ES6 
+					## [POO ES6]() 
 
-					- Field Declaration es una característica [experimental](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-					- Lorem ipsum 					
+					- ES6 permite usar la palabra clave "class" y "constructor"
+					- A pesar que internamente funciona con prototypes igual que en ES5
+					- Colocar propiedades en una clase es una característica [experimental](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+					 					
+				</section>
+				<section data-markdown="">
+					```javascript
+					class Factura {
+						// constructor(string, string, integer) 
+						constructor(proveedor, fecha, neto) {
+							this.proveedor = proveedor;
+							this.fecha = fecha;
+							this.neto = neto;
+						}
+						set fecha(f) {
+							this._fecha = new Date(f);
+						}
+						get fecha() {
+							return this._fecha;
+						}
+						get iva() {
+							return this.neto * 0.19;
+						}
+						get total() {
+							return this.neto * 1.19;
+						}
+						mostrarResumen() {
+							let fecha = this.fecha.toLocaleDateString();
+							console.log(`${this.proveedor} | ${fecha} | NETO: ${this.neto} IVA: ${this.iva} TOTAL: ${this.total}`);
+						}
+					}
+					let f = new Factura('Huawei', '2019-12-03', 100000);
+					f.mostrarResumen();
+					```
 				</section>
 				<section data-markdown="">
 					## POO ES6 
@@ -351,8 +378,118 @@
 					}
 					```
 				</section>
+				<section data-markdown="">
+					## POO ES6 vs ES5
+
+					```javascript
+					function PersonaES5(nombre, rut) {
+						this.nombre = nombre;
+						this._rut = rut; // al final se checkea con setRut()
+						this._dv;
+					
+						this.getRut = function() {
+							return this._rut;
+						};
+						this.setRut = function(rut) {
+							if( Number.isInteger(rut) && rut>1 ) {
+								this._rut = rut;
+							} else {
+								console.error("El RUT debe ser numérico y mayor que 0.");
+							}
+						};
+						this.getDv = function() {
+							if(this._dv == undefined) { 
+								this._dv = this.calcularDv();
+							} 
+							return this._dv;
+						}
+						this.calcularDv = function() {
+							return 'k'; // aca se debiese calcular el dígito verificador
+						};
+						this.format = function() {
+							const formatRut = this.getRut().toLocaleString("es-CL");
+							const formatDv = this.getDv().toUpperCase(); 
+							return `${this.nombre} ${formatRut}-${formatDv}`;
+						}
+					
+						// checks 
+						this.setRut(rut);
+					}
+					```
+				</section>
 			</section>
 			<!-- END POO ES6 -->
+
+			<section>
+				<section data-markdown="">
+					## [Más API-DOM]()
+
+					```javascript
+					document.querySelector('div p'); // devuelve el 1er elemento si encuentra varios 
+					document.querySelectorAll('div p'); // devuelve la lista completa
+
+					element.addEventListener(event, function(){}); // agrega un listener al evento indicado 
+					// ejemplos de eventos click, blur, etc
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplo 
+
+					```html 
+					&lt;div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;p&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Parrafo uno&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/p&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;p&gt;P&aacute;rrafo dos&lt;/p&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;p&gt;P&aacute;rrafo tres&lt;/p&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/div&gt;
+					```
+					```javascript 
+					document.querySelectorAll('div p').forEach(function(el){
+						el.style.color = 'pink';
+					});
+					document.querySelector('div p').style.color = 'red';
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejercicio]() 
+
+					- Agregue un botón en HTML 
+					- Envuelva el código de cambio de color en una función 
+					- Ejecute la función anterior al clickear el botón 
+				</section>
+			</section>
+			
+			<!-- Bootstrap -->
+			<section>
+				<section data-markdown="">
+					## [Bootstrap](https://getbootstrap.com/) 
+
+					- Formularios
+					- Alertas 
+					- Otros
+				</section>
+				<section data-markdown="">
+					## [Ejemplos Guiados]() 
+
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Ejercicio - p1]() 
+					- Cree una clase Factura ES5 ó ES6
+					- Utilice los campos: rut, proveedor, fecha, fechaVencimiento, neto, iva, total
+					- La fecha de vencimiento la calculará el programa, todas vencen a los sgtes 30 días 
+					- El IVA y Total deben ser calculados por el programa (evento blur)
+					- continua ...
+				</section>
+				<section data-markdown="">
+					## [Ejercicio - p2]() 
+					- Cree un formulario para introducir facturas
+					- Cree una tabla que contendrá las facturas 
+					- Incorpore la funcionalidad para agregar y eliminar elementos
+					- Utilice mensajes alert de Bootstrap
+				</section>
+			</section>
+
+			<section data-markdown="">
+				## [Typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+			</section>
 
 			
 			
