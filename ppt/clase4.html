@@ -51,7 +51,106 @@
 				</p>
 			</section>
 
+			<!-- Fuente: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions -->
+			<section data-markdown>
+				## [Funciones Flecha]() 
+
+				```javascript
+				(param1, param2, …, paramN) => { statements } 
+				(param1, param2, …, paramN) => expression
+				// equivalent to: => { return expression; }
+				
+				// Parentheses are optional when there's only one parameter name:
+				(singleParam) => { statements }
+				singleParam => { statements }
+				
+				// The parameter list for a function with no parameters
+				// should be written with a pair of parentheses.
+				() => { statements }
+				```
+			</section>
 			
+			<section>
+				<section data-markdown="">
+					## [Eventos]()
+
+					```javascript
+					myElement.onclick = functionA;
+					myElement.onclick = functionB;
+					// functionB se ejecutará solamente
+
+					myElement.addEventListener('click', functionA);
+					myElement.addEventListener('click', functionB);
+					// functionA y functionB se ejecutarán
+					```
+				</section>
+				<section data-markdown="">
+					## [Eventos]()
+
+					```javascript
+					// Forma no recomendada, pero funciona
+					```
+					```html					
+					&lt;button type=&quot;button&quot; onclick=&quot;alert(&apos;hola&apos;);&quot;&gt;Do something&lt;/button&gt;
+					```
+				</section>				
+				<section data-markdown="">
+					## [Eventos]()
+
+					```javascript
+					myElement.removeEventListener('click', functionB);
+					```
+				</section>
+				<section data-markdown="">
+					## [Event Object]() 
+
+					```javascript
+						function bgChange(e) {
+							const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+							e.target.style.backgroundColor = rndCol;
+							console.log(e);
+						}  
+					  
+						btn.addEventListener('click', bgChange);
+					```
+				</section>
+				<section data-markdown="">
+					## [Prevenir comportamiento]()
+
+					```html
+					&lt;form&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;  &lt;label for=&quot;fname&quot;&gt;First name: &lt;/label&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;  &lt;input id=&quot;fname&quot; type=&quot;text&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;  &lt;label for=&quot;lname&quot;&gt;Last name: &lt;/label&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;  &lt;input id=&quot;lname&quot; type=&quot;text&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;   &lt;input id=&quot;submit&quot; type=&quot;submit&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/div&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;  &lt;/form&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;  &lt;p&gt;&lt;/p&gt;
+					```
+				</section>
+				<section data-markdown="">
+					## [Prevenir comportamiento]()
+
+					```javascript
+						const form = document.querySelector('form');
+						const fname = document.getElementById('fname');
+						const lname = document.getElementById('lname');
+						const para = document.querySelector('p');
+
+						form.onsubmit = function(e) {
+							if (fname.value === '' || lname.value === '') {
+								e.preventDefault();
+								para.textContent = 'You need to fill in both names!';
+							}
+						}
+					```
+				</section>
+				<!-- Fuente: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events -->
+				<section data-markdown="">
+					## Burbuja de Eventos 
+
+					```javascript
+						video.onclick = function(e) {
+							e.stopPropagation();
+							video.play();
+						};
+					```
+				</section>
+			</section>
+
 			<!-- Typescript -->
 			<!-- END Typescript -->
 

@@ -8,6 +8,16 @@
 </head>
 <body>
     
+    <form>
+        <input type="text" name="asdf" />
+        <button id="btn-form1">btn1</button>
+    </form>
+
+    <form>
+        <input type="text" name="aaa" />
+        <button id="btn-form2">btn2</button>
+    </form>
+
     <div>
         <p>
             Parrafo uno
@@ -22,6 +32,12 @@
     <button type="button">Cambiar colores</button>
 
     <script>
+        const btn1 = document.querySelector('button#btn-form1'); // #btn-form1
+        const btn2 = document.querySelector('button#btn-form2'); // #btn-form2
+        btn1.addEventListener('click', function(){
+            alert("se hizo click en btn1");
+        });
+
     const boton = document.querySelector('button');
     boton.addEventListener('click', function(){
         document.querySelectorAll('div p').forEach(function(el){
