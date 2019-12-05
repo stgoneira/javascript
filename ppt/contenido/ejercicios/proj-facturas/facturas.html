@@ -45,41 +45,28 @@
                         <input type="number" class="form-control" id="iva" placeholder="150990">
                     </div>
                     <div class="form-group">
-                        <label for="neto">Total</label>
+                        <label for="total">Total</label>
                         <input type="number" class="form-control" id="total" placeholder="150990">
                     </div>
                     <button id="btn-guardar" type="button" class="btn btn-primary">Guardar</button>
                   </form>
             </div><!-- end div.col - columna1 -->
             <div class="col">
-                <table class="table">
+                <table id="tabla-facturas" class="table">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">F. Venc.</th>
+                        <th scope="col">NETO</th>
+                        <th scope="col">IVA</th>
+                        <th scope="col">TOTAL</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
+                      
                     </tbody>
                   </table>
             </div><!-- end div.col - columna2 -->
@@ -95,5 +82,13 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <style>
+    body {
+      background: #7F7FD5;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to top, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to top, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+    </style>
 </body>
 </html>

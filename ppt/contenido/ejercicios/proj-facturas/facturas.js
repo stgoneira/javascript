@@ -3,14 +3,20 @@ class Factura {
         this.folio = folio;
         this.proveedor = proveedor;
         this.rut = rut;
-        this.fecha = new Date(strFechaIso);
+        this.fecha = strFechaIso;
         this.neto = neto;
     }
     get iva()  {
-        return this.neto * 0.19;
+        return Math.round(this.neto * 0.19);
     }
     get total() {
-        return this.neto * 1.19;
+        return Math.round(this.neto * 1.19);
+    }
+    get fecha() {
+        return this._fecha;
+    }
+    set fecha(fecha) {
+        this._fecha = new Date(fecha); 
     }
     get fechaVencimiento() {
         let fechaVencimiento = new Date(this.fecha.toISOString());
@@ -20,10 +26,10 @@ class Factura {
 }
 
 function test() {
-    let f = new Factura(null, null, "2019-02-15", 100000);
+    let f = new Factura(null, null, null, "2019-02-15", 100000);
     console.log( "IVA", f.iva );
     console.log("Total", f.total);
     console.log("F. Venc.", f.fechaVencimiento);    
 }
 
-
+test();
