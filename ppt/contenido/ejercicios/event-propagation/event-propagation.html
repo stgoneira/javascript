@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Propagación de eventos</title>
+</head>
+<body>
+    
+    <div style="background-color: black; width: 500px; height: 500px;">
+        <button type="button">Ocultar / Mostrar</button>
+    </div>
+
+    <script>
+        let rgbRand = () => Math.round(Math.random() * 255);
+
+        document.addEventListener('DOMContentLoaded', e => {
+            let divElement = document.querySelector('div');
+            let buttonElement = document.querySelector('button');
+            
+            buttonElement.addEventListener('click', e => {
+                buttonElement.style.backgroundColor = `rgb(${rgbRand()},${rgbRand()},${rgbRand()})`;
+                e.stopPropagation();
+            });
+
+            divElement.addEventListener('click', e => {
+                divElement.style.backgroundColor = `rgb(${rgbRand()},${rgbRand()},${rgbRand()})`;
+            });
+        });
+    </script>
+</body>
+</html>

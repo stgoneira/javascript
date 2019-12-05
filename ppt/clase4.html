@@ -51,26 +51,119 @@
 				</p>
 			</section>
 
-			<!-- Fuente: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions -->
-			<section data-markdown>
-				## [Funciones Flecha]() 
+			<section data-markdown="">
+				## [Clase Anterior]()
 
-				```javascript
-				(param1, param2, …, paramN) => { statements } 
-				(param1, param2, …, paramN) => expression
-				// equivalent to: => { return expression; }
-				
-				// Parentheses are optional when there's only one parameter name:
-				(singleParam) => { statements }
-				singleParam => { statements }
-				
-				// The parameter list for a function with no parameters
-				// should be written with a pair of parentheses.
-				() => { statements }
-				```
+				- Fechas
+				- POO ES5 y ES6 
+				- Nuevas funciones API DOM 
+				- Bootstrap 
 			</section>
-			
+
+			<section data-markdown="">
+				## [Objetivos]() 
+
+				- Conocer funciones Math
+				- Entender y utilizar funciones flecha
+				- Entender y utilizar eventos
+				- Usar almacenamiento en navegador
+				- Utilizar y comparar jQuery 
+			</section>
+
 			<section>
+				<section data-markdown="">
+					## [Math functions]()
+
+					```javascript
+					Math.abs(p) // devuelve el valor absoluto.
+					// abs(-2) = 2 | abs(2) = 2 | abs(-3) = 3
+					Math.random() // devuelve número pseudo aleatorio entre 0 y 1
+					Math.round(p) // devuelve un número redondeado al entero más cercano
+					// round(2.5) = 3 | round(2.8) = 3 | round(2.2) = 2
+					Math.ceil(p) // aprox. hacia arriba 
+					// ceil(1.01) = 2 | ceil(2.5) = 3
+					Math.floor(p) // aprox. hacia abajo 
+					// floor(1.9) = 1 | floor(1.3) = 1
+					Math.max([x[, y[, …]]]) // retorna el máximo de un conjunto de valores 
+					Math.min([x[, y[, …]]]) // retorna el mínimo de un conjunto de valores 
+					// min(1, 2, 3, -2) = -2
+					// max(1, 2, 3, -2) = 3
+					```
+					[Ver todas las funciones](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)
+				</section>
+			</section>
+
+			<section>
+			<!-- Fuente: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions -->
+				<section data-markdown>
+					## [Funciones Flecha]() 
+
+					```javascript
+					(param1, param2, …, paramN) => { statements } 
+					(param1, param2, …, paramN) => expression
+					// equivalent to: => { return expression; }
+					
+					// Parentheses are optional when there's only one parameter name:
+					(singleParam) => { statements }
+					singleParam => { statements }
+					
+					// The parameter list for a function with no parameters
+					// should be written with a pair of parentheses.
+					() => { statements }
+					```
+				</section>
+				<section data-markdown>
+						## [Funciones Flecha]() 
+						### Ejemplo #1
+						```javascript
+						let sumar = (x1, x2) => x1 + x2;
+						let sumar = (x1, x2) => {return x1 + x2}; // lo mismo 
+						let sumar = function(x1, x2) {return x1 + x2}; // lo mismo
+
+						sumar(1, 1); // 2
+						```
+				</section>
+				<section data-markdown>
+						## [Funciones Flecha]() 
+						### Ejemplo #2
+						
+						```javascript
+						let saludar = nombre => { console.log('Hola '+nombre) };
+						let saludar = (nombre) => { console.log('Hola '+nombre) };
+						let saludar = function(nombre) { console.log('Hola '+nombre); };
+
+						saludar('Juan');
+						```
+				</section>
+				<section data-markdown>
+						## [Funciones Flecha]() 
+						### Ejemplo #3
+						
+						```javascript
+						// devuelve un número aleatorio
+						let rgbRand = () => Math.round(Math.random() * 255);
+						let rgbRand = () => { return Math.round(Math.random() * 255) }; // lo mismo
+						let rgbRand = function(){ return Math.round(Math.random() * 255); };
+						
+						console.log( rgbRand() );
+						```
+				</section>				
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Eventos Comunes]()
+
+					- Click
+					- Focus
+					- Blur
+					- Reset (form)
+					- Submit (form)
+					- Load (document)
+					- Resize
+					- Scroll
+					- [Más eventos](https://developer.mozilla.org/en-US/docs/Web/Events)
+				</section>
 				<section data-markdown="">
 					## [Eventos]()
 
@@ -140,8 +233,9 @@
 				</section>
 				<!-- Fuente: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events -->
 				<section data-markdown="">
-					## Burbuja de Eventos 
+					## [Burbuja de Eventos]() 
 
+					Mostrar ejemplo
 					```javascript
 						video.onclick = function(e) {
 							e.stopPropagation();
@@ -151,6 +245,9 @@
 				</section>
 			</section>
 
+			<section data-markdown="">
+				# [jQuery]()
+			</section>
 			<!-- Typescript -->
 			<!-- END Typescript -->
 
