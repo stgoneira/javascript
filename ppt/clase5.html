@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="description" content="Curso de Javascript Fullstack">
+	<meta name="author" content="Santiago Neira">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Curso Javascript</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Javascript</h1>
+				<h3><a href="#">Clase 5</a></h3>
+				<p>
+					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
+							Neira</a><br /><br />
+						<a target="_blank" href="?print-pdf"><i class="fas fa-print"></i></a>
+					</small>
+				</p>
+			</section>
+
+			<section data-markdown="">
+				## [Clase Anterior]()
+
+				- Math
+				- Funciones flecha
+				- Eventos
+				- jQuery
+			</section>
+
+			<section data-markdown="">
+				## [Objetivos]()
+
+				- Regex
+				- I18N
+				- Cookies
+				- Local Storage
+				- Promesas
+				- Modules
+				- Typescript
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Date Formatting]()
+
+					```javascript
+					let d = new Date();
+
+					new Intl.DateTimeFormat("es-CL",{dateStyle: 'full'}).format(d);
+					// "viernes, 6 de diciembre de 2019"
+					new Intl.DateTimeFormat("es-CL",{dateStyle: 'long'}).format(d);
+					// "6 de diciembre de 2019"
+					new Intl.DateTimeFormat("es-CL",{dateStyle: 'medium'}).format(d);
+					// "06-12-2019"
+					new Intl.DateTimeFormat("es-CL",{dateStyle: 'short'}).format(d);
+					// "06-12-19"
+					```
+				</section>
+				<section data-markdown="">
+					## [Time Formatting]()
+
+					```javascript
+					let d = new Date();
+
+					new Intl.DateTimeFormat("es-CL", {
+						hour: '2-digit',
+						minute: '2-digit'
+					}).format(d); // 12:50
+
+					```
+					[Ver más
+					documentación](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Text_formatting#Internationalization)
+				</section>
+				<section data-markdown="">
+					## Number Format
+
+					```javascript
+					let precio = 99990;
+
+					new Intl.NumberFormat('es-CL', {}).format(precio); // 99.990
+					
+					new Intl.NumberFormat('es-CL', {
+						style:'currency',
+						currency: 'USD'
+					}).format(precio);
+					// US$99.990,00
+					
+					new Intl.NumberFormat('es-CL', {
+						style:'currency',
+						currency: 'CLP'
+					}).format(precio);
+					// $99.990
+					```
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## Promesas
+
+				</section>
+				<section data-markdown="">
+					## Callback Hell
+
+					```javascript
+					doSomething(function(result) {
+						doSomethingElse(result, function(newResult) {
+							doThirdThing(newResult, function(finalResult) {
+								console.log('Got the final result: ' + finalResult);
+							}, failureCallback);
+						}, failureCallback);
+					}, failureCallback);
+					```
+				</section>
+				<section data-markdown="">
+					## Sintaxis 
+
+					```javascript
+					doSomething()
+					.then(function(result) {
+					  return doSomethingElse(result);
+					})
+					.then(function(newResult) {
+					  return doThirdThing(newResult);
+					})
+					.then(function(finalResult) {
+					  console.log('Got the final result: ' + finalResult);
+					})
+					.catch(failureCallback);
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejecución después del catch()]()
+
+					```javascript
+					new Promise((resolve, reject) => {
+						console.log('Initial'); 
+						resolve();
+					})
+					.then(() => {
+						throw new Error('Something failed');							
+						console.log('Do this');
+					})
+					.catch(() => {
+						console.error('Do that');
+					})
+					.then(() => {
+						console.log('Do this, no matter what happened before');
+					});
+					```
+				</section>
+			</section>
+
+
+		</div><!-- end .slides -->
+	</div><!-- end .reveal -->
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>
