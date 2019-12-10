@@ -62,13 +62,12 @@
 			<section data-markdown="">
 				## [Objetivos]()
 
-				- Regex
-				- I18N
-				- Cookies
-				- Local Storage
+				- Formateo de Fechas
+				- Formateo de Moneda
+				- Modulos				
 				- Promesas
-				- Modules
-				- Typescript
+				- Async Await				
+				- Fetch()
 			</section>
 
 			<section>
@@ -103,6 +102,8 @@
 					[Ver más
 					documentación](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Text_formatting#Internationalization)
 				</section>
+			</section>
+			<section>
 				<section data-markdown="">
 					## Number Format
 
@@ -123,12 +124,101 @@
 					}).format(precio);
 					// $99.990
 					```
+
+					[Ver más documentación](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat)
 				</section>
 			</section>
 
 			<section>
 				<section data-markdown="">
-					## Promesas
+					## [Módulos]()
+
+					- Deben tener la extensión [.mjs]() en vez de [.js]()
+					- En HTML la etiqueta script tiene que tener el atributo [type='module']()
+					- Esta característica es soportada solo por los navegadores modernos que soportan ES6
+				</section>
+				<section data-markdown="">
+					## [Módulos]()
+
+					```html
+					&lt;!DOCTYPE html&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;html lang=&quot;en&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;head&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta charset=&quot;UTF-8&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;title&gt;JS M&oacute;dulos&lt;/title&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/head&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;body&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;h1&gt;JS M&oacute;dulos&lt;/h1&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;p&gt;Lorem ipsum dolor&lt;/p&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;script type=&quot;module&quot; src=&quot;mainweb.mjs&quot;&gt;&lt;/script&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/body&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/html&gt;
+					```
+				</section>
+				<section data-markdown="">
+					## Importar
+
+					```javascript
+					import {Persona} from './Persona.mjs';
+					import { Rut } from './Rut.mjs';
+					
+					document.addEventListener('DOMContentLoaded', e => {
+						let rut = new Rut(12345678, 5);
+						let nombre = 'Juan Delgado';
+						let edad = 31;
+						let p = new Persona(nombre, edad, rut);
+						console.log( p.presentarse() );
+					});					
+					```
+				</section>
+				<section data-markdown="">
+					## Exportar
+
+					```javascript
+					import { Rut } from './Rut.mjs';
+
+					export class Persona {
+						constructor(nombre, edad, rut) {
+							this.nombre = nombre;
+							this.edad = edad;
+							if(rut.esValido()) this.rut = rut;							
+						}					
+						presentarse() {
+							return `Hola soy ${this.nombre}, mi RUT es ${this.rut} 
+							y tengo ${this.edad} años!`;
+						}
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejecución en NodeJS]()
+
+					- Quitar código dependiente del browser 
+					- Utilizar opción de node --experimental-modules
+				</section>
+				<section data-markdown="">
+					## [Para NodeJS]()
+
+					```javascript
+					// main.mjs
+					import {Persona} from './Persona.mjs';
+					import { Rut } from './Rut.mjs';
+					
+					
+					let rut = new Rut(12345678, 5);
+					let nombre = 'Juan Delgado';
+					let edad = 31;
+					let p = new Persona(nombre, edad, rut);
+					console.log( p.presentarse() );					
+					```
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Ejercicio]()
+					
+					- Adecuar su código del programa de las facturas en módulos 
+					- Separe en archivos distintos las clases (Factura, Rut, etc)
+					- Reutilice los módulos en 2 versiones del programa:
+						* Una app para web, con funcionalidad completa
+						* Una versión simplificada para consola, debe calcular la fecha de venc., IVA y Total de la factura.
+					- Mejore su software utilizando las funciones de formateo de fechas y moneda
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Promesas]()
 
 				</section>
 				<section data-markdown="">
@@ -180,6 +270,80 @@
 						console.log('Do this, no matter what happened before');
 					});
 					```
+				</section>
+
+				<section data-markdown="">
+					## [Async Await]()
+
+					```javascript
+					async function foo() {
+						try {
+						  const result = await doSomething();
+						  const newResult = await doSomethingElse(result);
+						  const finalResult = await doThirdThing(newResult);
+						  console.log(`Got the final result: ${finalResult}`);
+						} catch(error) {
+						  failureCallback(error);
+						}
+					}
+					```
+				</section>
+				<section data-markdown="">
+					```javascript
+					async function foo() { // COMPARACION
+						try {
+						  const result = await doSomething();
+						  const newResult = await doSomethingElse(result);
+						  const finalResult = await doThirdThing(newResult);
+						  console.log(`Got the final result: ${finalResult}`);
+						} catch(error) {
+						  failureCallback(error);
+						}
+					}
+					```
+					
+					```javascript
+					doSomething() // COMPARACION
+					.then(function(result) {
+						return doSomethingElse(result);
+					})
+					.then(function(newResult) {
+						return doThirdThing(newResult);
+					})
+					.then(function(finalResult) {
+						console.log('Got the final result: ' + finalResult);
+					})
+					.catch(failureCallback);
+					```
+				</section>
+			</section>
+			<section>
+				<section data-markdown="">
+					## [fetch()]()
+
+					- Permite realizar una llamada [asincrónica]() a otra URL
+					- Devuelve una [Promesa]()
+					- Cuando la promesa es resuelta, tendremos un objeto [Response]()
+					- [Más documentación](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+
+					```javascript
+					const response = await fetch('http://example.com/movies.json');
+					const myJson = await response.json();
+					```
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Ejercicio]()
+
+					- Cree una app para ver el clima
+					- Debe mostrar al menos la [temperatura y humedad]() actual
+					- Debe poder escoger al menos entre [3 ciudades]() de Chile
+					- Puede usar el servicio de [openweathermap.org](openweathermap.org)
+				</section>
+				<section data-background-iframe="https://stgoneira.github.io/javascript/ppt/contenido/ejercicios/clima/clima.html" data-background-interactive>
+						
 				</section>
 			</section>
 
