@@ -65,7 +65,7 @@
 
 				- Cookies
 				- Web Storage API 
-				- Use Strict
+				- Herencia
 				
 			</section>
 
@@ -245,6 +245,73 @@
 					- [API Storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
 				</section>
 			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Herencia]() 
+
+					- Gracias a ES6 tenemos una [sintaxis]() similar a otros lenguajes
+					- Podemos usar:
+						* extends 
+						* super()
+				</section>
+				<section data-markdown="">
+					## Ejemplo 
+
+					```javascript
+					class Vehiculo {
+						constructor(nombre) {
+							this.nombre = nombre;
+						}
+					
+						andar() {
+							console.error('No se puede instanciar');
+						}
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## Herencia 
+					```javascript
+					class Automovil extends Vehiculo {
+						constructor() {
+							super('BMW');
+						}
+					
+						andar() {
+							console.log(`${this.nombre}: sonido de auto`);
+						}
+					}
+					```
+				</section>
+				<section data-markdown="">
+						## Herencia
+						```javascript
+						class Moto extends Vehiculo {
+							constructor() {
+								super('Yahama');
+							}
+						
+							andar() {
+								console.log(`${this.nombre}: sonido de moto`);
+							}
+						}
+						```
+					</section>
+
+					<section data-markdown="">
+						## Herencia 
+
+						```javascript
+						let vehiculo = new Vehiculo('asdf');
+						let auto = new Automovil();
+						let moto = new Moto();
+						
+						let arr = [vehiculo, auto, moto];
+						arr.forEach(v => v.andar());
+						```
+					</section>
+			</section>
 			
 			<section>
 				<section data-markdown data-separator-vertical="^\n\n" data-separator="^\n\n\n">
@@ -262,7 +329,7 @@
 						* Una usando Web Storage API
 						* Y la otra utilizando Cookies
 					- Utiliza una cookie para saber qué clase de persistencia usar 
-					- Utilice una interfaz o herencia
+					- Utilice herencia
 				</section>
 			</section>
 
