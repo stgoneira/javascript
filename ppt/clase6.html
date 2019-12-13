@@ -1,0 +1,297 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="description" content="Curso de Javascript Fullstack">
+	<meta name="author" content="Santiago Neira">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Curso Javascript</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Javascript</h1>
+				<h3><a href="#">Clase 6</a></h3>
+				<p>
+					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
+							Neira</a><br /><br />
+						<a target="_blank" href="?print-pdf"><i class="fas fa-print"></i></a>
+					</small>
+				</p>
+			</section>
+
+			<section data-markdown="">
+				## [Clase Anterior]()
+
+				- Formateo de Fechas
+				- Formateo de Moneda
+				- Modulos				
+				- Promesas
+				- Async Await				
+				- Fetch()
+			</section>
+			<section data-markdown="">
+				## [Objetivos]()
+
+				- Cookies
+				- Web Storage API 
+				- Use Strict
+				
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Cookies]()
+
+					- Una cookie es una [pequeña pieza con un dato]()
+					- Es [almacenada]() por el [browser]()
+					- Y enviada por el [browser al servidor]() en cada Request 
+				</section>
+				<section data-markdown="">
+					## [Usos Principales]() 
+
+					- [Gestión de sesiones](): Logins, carritos, puntaje de juegos, etc
+					- [Personalización](): Preferencias de usuario, themes y otras configuraciones.
+					- [Tracking](): Registro y análisis de comportamiento del usuario.
+				</section>
+				<section data-markdown="">
+					## [Cookies Actualidad]()
+
+					- Desde tiempos remotos las cookies han sido el método común para [almacenar información]()
+					- Hoy en día, van en [franca retirada](). Principalmente a 2 hechos:
+						* Apps modernas hacen uso de [APIs de persistencia modernas]() disponibles en los browsers
+						* Al conocido aviso sobre las Cookies debido a la [legislación Europea]()
+					- Una de las ventajas que le quedan a las cookies, es que son [soportada por Browsers extremedamente antiguos]()
+				</section>	
+				<section data-markdown="">
+					## [Aviso uso Cookies]()
+					![EU Notice](https://mdn.mozillademos.org/files/15734/cookies-notice.png)
+				</section>			
+				<section data-markdown="">
+					## [Cookies]()
+
+					- El método para acceso a las Cookies es un tanto [arcaico e incómodo](), para los ejemplos utilizaremos una librería llamada [js-cookie](https://github.com/js-cookie/js-cookie)
+					- Hoy en día existen [alternativas más modernas y eficientes]() para almacenar información de lado del cliente:
+						* Web Storage API 
+						* IndexedDB API 
+				</section>
+				<section data-markdown="">
+					## Cookies
+
+					```html
+					&lt;!DOCTYPE html&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;html lang=&quot;en&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;head&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;...&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/head&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;body&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;h1&gt;Cookies&lt;/h1&gt;&#13;&#10;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;script &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;src=&quot;https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js&quot;&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/script&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;script src=&quot;cookies.js&quot;&gt;&lt;/script&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/body&gt;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/html&gt;
+					```
+				</section>
+				<section data-markdown="">
+					## Cookie Path
+
+					```javascript
+					// para crear una cookie puede ejecutar
+					document.cookie = "menu=top"; // API nativa
+					Cookies.set('menu', 'top');// con librería
+
+					// puedo definir que la cookie sea específica de un path
+					document.cookie = 
+						"mostrar-popup=true;path=/ejercicios/cookies.html"
+					Cookies.set(
+						'mostrar-popup', 
+						true, 
+						{path: '/ejercicios/cookies.html'}
+					);
+					```
+				</section>
+				<section data-markdown="">
+					## Expiración 
+
+					```javascript
+					// Cookie con tiempo de vida
+					// ej. con API Nativa
+					let expiracion = new Date();
+					expiracion.setDate(expiracion.getDate()+2);
+					document.cookie = 
+						"mostrar-notificaciones=true;expires="+expiracion.toUTCString();
+					// con librería
+					Cookies.set('mostrar-notificaciones', true, {expires: 2});
+					```
+				</section>
+				<section data-markdown="">
+					## Borrar Cookie 
+
+					```javascript
+					// Borrar Cookie API Nativa
+					let ayer = new Date();
+					ayer.setDate( ayer.getDate()-1 );
+					// si la cookie que deseo borrar tiene un path configurado
+					// también debo especificarlo en este momento
+					document.cookie="mostrar-popup=;expires="+ayer.toUTCString();
+					
+					// Con librería
+					Cookies.remove('mostrar-popup');
+					```
+				</section>
+				<section data-markdown="">
+					## Borrar Cookie 
+
+					```javascript
+					Cookies.set('name', 'value', { path: '' })
+					Cookies.remove('name') // fail!
+					Cookies.remove('name', { path: '' }) // removed!
+					```
+				</section>
+				<section data-markdown="">
+					## Más Información 
+
+					- [Seguridad sobre cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+					- [Ejemplos acceso cookies](https://www.w3schools.com/js/js_cookies.asp)
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Client-side Data Storage]() 
+
+					- [Web Storage API]():
+						* Para almacenar pequeños datos, nombre-valor
+						* Sintaxis simple
+					- [IndexedDB API]():
+						* Sistema completo de base de datos
+						* Para almacenar datos complejos
+						* Ej. Registros completos de clientes
+						* Ej. Hasta datos complejos como archivos de audio o video
+
+				</section>
+				<section data-markdown="">
+					## [Web Storage API]() 
+
+					- Mantiene almacenamiento separado [por cada origen]() (dominio)
+					- Datos [nunca son transferidos al servidor](), a diferencia de las cookies 
+					- Límite de [almacenamiento mayor]() que una cookie (5mb aprox)
+				</section>
+				<section data-markdown="">
+					## [Web Storage API]() 
+
+					- [localStorage](): persiste aún cuando el browser se cierre y vuelva a abrir
+					- [sessionStorage](): datos disponibles mientras dura la sesión (browser abierto)
+				</section>
+				<section data-markdown="">
+					## Guardar 
+
+					```javascript
+					localStorage.setItem('bg', '#002200')
+					// o con
+					sessionStorage.setItem('bg', '#002200')
+					```
+				</section>
+				<section data-markdown="">
+					## Recuperar
+					
+					```javascript
+					localStorage.getItem('bg');
+					// o con
+					sessionStorage.getItem('bg');
+					```
+				</section>
+				<section data-markdown="">
+					## Eliminar
+
+					```javascript
+					localStorage.removeItem('bg')
+					// o con
+					sessionStorage.removeItem('bg')
+					``` 
+				</section>
+				<section data-markdown="">
+						## Borrar Todo
+	
+						```javascript
+						localStorage.clear()
+						// o con
+						sessionStorage.clear()
+						``` 
+					</section>
+				<section data-markdown="">
+					## Más Información 
+
+					- [API Storage](https://developer.mozilla.org/en-US/docs/Web/API/Storage)
+				</section>
+			</section>
+			
+			<section>
+				<section data-markdown data-separator-vertical="^\n\n" data-separator="^\n\n\n">
+					## [Ejercicio]() 
+
+					- Termine el ejercicio del clima de la clase anterior
+					- Cree una página para que el usuario pueda configurar sus preferencias:
+						* Sistema: Métrico | Imperial 
+						* Color de Fondo: al menos 2 alternativas
+					
+
+
+
+					- Incorpore 2 clases para guardar las preferencias del usuario:
+						* Una usando Web Storage API
+						* Y la otra utilizando Cookies
+					- Utiliza una cookie para saber qué clase de persistencia usar 
+					- Utilice una interfaz o herencia
+				</section>
+			</section>
+
+
+		</div><!-- end .slides -->
+	</div><!-- end .reveal -->
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>

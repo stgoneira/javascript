@@ -1,5 +1,12 @@
 import { Clima } from './Clima.mjs';
 import {ClimaUI} from './ClimaUI.mjs';
+import {PreferenciasUI} from './PreferenciasUI.mjs';
+
+
+document.addEventListener('DOMContentLoaded', e => {
+    let preferenciasUI = new PreferenciasUI();
+    preferenciasUI.activar();
+});
 
 let localidad = document.getElementById('localidad');
 

@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sketchy/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-2kOE+STGAkgemIkUbGtoZ8dJLqfvJ/xzRnimSkQN7viOfwRvWseF7lqcuNXmjwrL" crossorigin="anonymous">
-    <title>El Clima</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    
+        <title>El Clima</title>
     <style>
-        body {
+        .bg1 {
             background: #007991;
             /* fallback for old browsers */
             background: -webkit-linear-gradient(to right, #78ffd6, #007991);
@@ -17,20 +19,31 @@
             background: linear-gradient(to right, #78ffd6, #007991);
             /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
+
+        .bg2 {
+            background: #667db6;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
     </style>
 </head>
 
-<body>
+<body class="bg2">
     <div class="container py-4 text-center">
-        <div class="card" style="width: 30rem; margin: 0 auto;">
-            <img src="https://www.accuweather.com/images/weathericons/33.svg" class="card-img-top" alt="..."
+
+        <div class="card text-center py-2" style="width: 30rem; margin: 0 auto; position: relative;">
+            <a id="btn-preferencias" style="position: absolute; right: 1em;" href="#"><i class="fas fa-user-cog"></i></a>
+            <img src="weather.png" style="margin: 0 auto; height: 100px;width: 100px;" class="card-img-top" alt="..."
                 style="height: 100px; width:auto;">
             <div class="card-body">
                 <h1 id="temperatura" class="card-title"></h1>
                 <h5 id="titulo" class="card-title">El tiempo ahora</h5>
                 <p id="humedad" class="card-text"></p>
                 <p id="presion" class="card-text"></p>
-                <form>                    
+                <form>
                     <div class="form-group">
                         <select class="form-control" id="localidad">
                             <option value="Santiago,cl">Santiago</option>
@@ -38,8 +51,39 @@
                             <option value="Concepción,cl">Concepción</option>
                         </select>
                     </div>
-                </form>               
+                </form>
             </div>
+        </div>
+
+        <div id="preferencias" class="card mt-5" style="display:none; width: 30rem; margin: 0 auto;">
+            <div class="card-body">
+                <h3 class="card-title" style="text-decoration: underline;">Preferencias</h3>
+                <form>
+                    <!-- sistema para mostrar datos clima -->
+                    Sistema:
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sistema" value="metrico" checked>
+                        <label class="form-check-label">Métrico</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="sistema" value="imperial">
+                        <label class="form-check-label">Imperial</label>
+                    </div>
+                    <br />
+                    <!-- background -->
+                    Background:
+                    <div class="form-group">
+                        <select class="form-control" name="background">
+                            <option value="bg1">BG1 - Celeste </option>
+                            <option value="bg2">BG2 - Azul </option>
+                        </select>
+                    </div>
+
+                    <!-- botones -->
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+
         </div>
 
     </div>
