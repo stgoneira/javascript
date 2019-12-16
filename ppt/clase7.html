@@ -41,7 +41,7 @@
 		<div class="slides">
 			<section>
 				<h1>Javascript</h1>
-				<h3><a href="#">Clase 6</a></h3>
+				<h3><a href="#">Clase 7</a></h3>
 				<p>
 					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
 							Neira</a><br /><br />
@@ -63,20 +63,127 @@
 				- Node.js 
 				- Filesystem API
 				- JSON 
-				- Testing
-				- Typescript
+				- Testing				
 				- Proyectos 
-				- Strict Mode 
+				- Strict Mode
+				- Express 
+				- Typescript 
 				- Expresiones Regulares 
 			</section>
 
 			<section>
-				<section>
-					## NodeJS
+				<section data-markdown="">
+					## [NodeJS]()
 
-					Major Node.js versions enter Current release status for six months, which gives library authors time to add support for them. After six months, odd-numbered releases (9, 11, etc.) become unsupported, and even-numbered releases (10, 12, etc.) move to Active LTS status and are ready for general use. LTS release status is "long-term support", which typically guarantees that critical bugs will be fixed for a total of 30 months. Production applications should only use Active LTS or Maintenance LTS releases.
+					- JS llevado a [entorno fuera del browser](), usado en:
+						* lado del [servidor]() 
+						* entorno [scripting]() 
+						* aplicaciones de [escritorio]() 
+						* apps [móviles]()
+						* entre otros 
+					- Evita [bloqueos](), funciona como un [Loop de Eventos]()
+				</section>
+				<section data-markdown="">
+					## [NodeJS]()
 
-					Fuente: https://nodejs.org/en/about/releases/
+					- Lanzamientos de nuevas [versiones cada 6 meses]() y [6 meses de soporte](), versiones representadas por números [impares]() (9, 11, etc)
+					- Números [pares]() representan versiones Long Term Support [(LTS)]() (10, 12, etc)
+					- SW en [producción]() se recomienda que utilice versiones [LTS]()
+
+					Fuente: [https://nodejs.org/en/about/releases/](https://nodejs.org/en/about/releases/)
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [JSON]()
+
+					- Significa [Javascript Object Notation]() (JSON)
+					- Es una sintaxis para [almacenar e intercambiar datos]().
+					- Es texto escrito con notación de Javascript
+				</section>
+				<section data-markdown="">
+					## [JSON]()
+
+					- JSON es un formato de intercambio [liviano]()
+					- [Fácilmente convertible]() entre texto y objeto en JS 
+					- [Fácil de entender]() y utilizado en varios lenguajes, no solo en JS 
+				</section>
+				<section data-markdown="">
+					## Sintaxis JSON 
+
+					```javascript
+					{
+						nombre: 'Raúl Soto',
+						edad: 31,
+						ciudad: 'Concepcion',
+						activo: true,
+						correo: 'rauls@123.cl'
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejemplo Almacenamiento]()
+
+					```javascript
+					let obj = {nombre: 'Patricio', edad: 25, ciudad: 'Santiago'};
+					let textJson = JSON.stringify( obj );
+
+					// específico entorno browser 
+					localStorage.setItem('persona', textJson);
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejemplo Recuperación]() 
+
+					```javascript
+					// específico entorno browser 
+					let textJson = localStorage.getItem('persona');
+
+					let obj = JSON.parse( textJson );
+					console.log( obj );					
+					```
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## [Proyectos]() 
+
+					```bash
+					$ cd proyecto 
+					$ npm init -y 
+					$ code package.json
+					```
+				</section>
+				<section data-markdown="">
+					## [package.json]() 
+
+					```json 
+					{
+						"name": "proyecto",
+						"version": "1.0.0",
+						"description": "",
+						"main": "index.js",
+						"scripts": {
+						  "test": "echo \"Error: no test specified\" && exit 1"
+						},
+						"keywords": [],
+						"author": "",
+						"license": "ISC"
+					  }
+					```
+				</section>
+				<section data-markdown="">
+					## [Instalar Paquetes]()
+
+					```bash 
+					$ npm install uniq 
+					$ npm install browserify --save-dev
+					```
+				</section>
+				<section data-markdown="">
+					## NPX 
 				</section>
 			</section>
 
@@ -91,6 +198,7 @@
 				</section>
 			</section>
 
+			
 
 		</div><!-- end .slides -->
 	</div><!-- end .reveal -->
