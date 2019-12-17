@@ -35,8 +35,13 @@ export class Clima {
             console.log("Devulelvo datos ya guardados.");
             return this.data;
         }
-        console.log("Consultando los datos desde la API.");
-        let url = `${this._currentWheatherURL}?q=${this.cityName},${this.countryCode}&units=metric&appid=${this._apiKey}`;
+        console.log("Consultando los datos desde la API.");        
+        let url = `${this._currentWheatherURL}?q=${this.cityName},${this.countryCode}&units=metric&appid=${this._apiKey}&lang=es`;
+        
+        if(typeof window === 'undefined') {
+            let p = await import('cross-fetch/polyfill');
+        }
+
         try {
             let response = await fetch(url);
             let data = await response.json();
@@ -48,3 +53,11 @@ export class Clima {
         return;
     }
 }
+
+let city = 'Iquique';
+let clima = new Clima(city, 'cl');
+clima.getData();
+let temp = clima.getTemperatura();
+temp.then(t => console.log(`Temperatura en ${city}: ${t}º`));
+
+

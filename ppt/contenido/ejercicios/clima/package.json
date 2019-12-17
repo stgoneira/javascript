@@ -1,0 +1,16 @@
+{
+  "name": "clima",
+  "version": "1.0.0",
+  "description": "App que muestra el clima desde los WS de Openweathermap.org en ambiente de browser y por consola",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "express": "^4.17.1"
+  }
+}
