@@ -347,9 +347,8 @@
 					## [Sección scripts]()
 
 					```bash 
-					## instalamos express antes
-					$ npm i express
-					$ npm i rimraf
+					$ npm i express # Node Web Application Framework
+					$ npm i rimraf # remove dir & files multiplataforma 
 					```
 
 					```javascript
@@ -364,7 +363,7 @@
 
 					```bash 
 					$ npm run dist # corre la tarea dist del package.json 
-					$ npm start # start no necesita run
+					$ npm start # start y test no necesitan run
 					$ # todos los demás scripts que no sean start necesitan run
 					```
 				</section>
@@ -394,16 +393,99 @@
 				</section>
 			</section>
 
+			<section>				
+				<section data-markdown="">
+					## [Javascript Testing]()
+
+					- Los 2 principales proyectos son:
+						* Mocha 
+						* Jasmine 
+					- Ambos corren en el browser y en node.js 
+					- En esta presentación revisaremos Mocha 
+				</section>
+				<section data-markdown="">
+					## Setup
+
+					```bash
+					$ npm i mocha 					
+					$ mkdir test # directorio para las pruebas
+					```
+					
+					```javascript
+					// package.json 
+					...
+					"scripts": {
+						"test": "mocha"
+					},
+					...
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplo 
+
+					```javascript
+					// Matematicas.js 
+					class Matematicas {
+						static sumar(s1, s2) {
+							return s1 + s2;
+						}
+					
+						static restar(r1, r2) {
+							return r1 - r2;
+						}
+					}
+					
+					module.exports = Matematicas;
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplo 
+
+					```javascript
+					// test/MatematicasTest.js 
+					const assert = require('assert').strict;
+					const Matematicas = require('../Matematicas');
+					
+					describe("Matematicas.js", () => {
+						describe("sumar", () => {
+							it("Debe sumar numbers", () => {
+								assert.equal(  
+									Matematicas.sumar(3, 5)
+									, 8
+								);
+							});
+							it("Debe sumar aunque sean strings", () => {
+								assert.equal(  
+									Matematicas.sumar("1", "2")
+									, 3
+								);
+							});
+						});
+					
+					});
+					```
+				</section>				
+			</section>
+			
 			<section>
 				<section data-markdown="">
-					## Testing con Mocha
+					## [Ejercicio]() 
+	
+					- Cree un proyecto para la lógica del RUT 
+					- Cree una batería de pruebas, al menos 10 
+					- Cree un 2do proyecto llamado Facturas					
+					- Configure express para servir los archivos de manera estática
+				</section>
+				<section data-markdown="">
+					## [Ejercicio - parte 2]() 	
 
-					- Varias librerías testing 
-					Jasmine .... etc 
-					Mocha ejecuta todos los js dentro de test directory 
-					ver codigo dir pruebas
+					- Utilice el proyecto RUT para validar utilizando Browserify
+					- Cree un 3er proyecto con express sobre otro puerto
+					- Devuelva un JSON con las razones sociales y RUTs de los proveedores de manera estática 
+					- Utilice los datos del JSON de proveedores desde el proyecto Facturas
 				</section>
 			</section>
+			
 
 			
 
