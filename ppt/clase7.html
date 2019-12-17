@@ -57,18 +57,26 @@
 				- Web Storage API 
 				- Herencia
 			</section>
-			<section data-markdown="">
-				## [Objetivos]()
 
-				- Node.js 
-				- Filesystem API
-				- JSON 
-				- Testing				
-				- Proyectos 
-				- Strict Mode
-				- Express 
-				- Typescript 
-				- Expresiones Regulares 
+			<section>
+				<section data-markdown="">
+					## [Objetivos - Parte I]()
+
+					- Node.js 
+					- JSON 
+					- Proyectos 
+					- Versionamiento 
+				</section>
+
+				<section data-markdown="">
+					## [Objetivos - Parte II]()
+
+					- Require 
+					- Scripts
+					- Browserify
+					- Express
+					- Testing
+				</section>
 			</section>
 
 			<section>
@@ -148,11 +156,22 @@
 
 			<section>
 				<section data-markdown="">
+					## [Proyectos]()
+
+					En esta sección veremos:
+					- Creación de proyectos con NPM 
+					- Comprender el archivo package.json 
+					- Agregar paquetes al proyecto 
+					- Entender el versionamiento y la sintaxis para expresarlo en npm
+				</section>
+				<section data-markdown="">
 					## [Proyectos]() 
 
 					```bash
 					$ cd proyecto 
+
 					$ npm init -y 
+
 					$ code package.json
 					```
 				</section>
@@ -178,12 +197,200 @@
 					## [Instalar Paquetes]()
 
 					```bash 
+					$ # instala módulo uniq como dependencia
 					$ npm install uniq 
+
+					# instala browserify solo para modo desarrollo 
 					$ npm install browserify --save-dev
 					```
 				</section>
 				<section data-markdown="">
-					## NPX 
+					## package.json 
+
+					```javascript
+					{
+						"name": "node-basico",
+						"version": "1.0.0",
+						"description": "",
+						"main": "index.js",
+						...
+						"dependencies": {
+						  "uniq": "^1.0.1"
+						},
+						"devDependencies": {
+						  "browserify": "^16.5.0"
+						}
+					  }
+					  
+					```
+				</section>
+				<section data-markdown="">
+					## [NPM]() 
+
+					Consiste de 3 componentes: 
+					- El sitio web [npmjs.com](http://npmjs.com)
+					- La interfaz de línea de comandos [(CLI)]()
+					- El registro: [BD del SW en JS]() y su Meta-Información
+				</section>
+				<section>
+					<h2><a>Versionamiento</a></h2>
+					<table style="font-size: 0.7em;">
+						<thead>
+						  <tr>
+							<th>Code status</th>
+							<th>Stage</th>
+							<th>Rule</th>
+							<th>Example version</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td>First release</td>
+							<td>New product</td>
+							<td>Start with 1.0.0</td>
+							<td>1.0.0</td>
+						  </tr>
+						  <tr>
+							<td>Backward compatible bug fixes</td>
+							<td>Patch release</td>
+							<td>Increment the third digit</td>
+							<td>1.0.1</td>
+						  </tr>
+						  <tr>
+							<td>Backward compatible new features</td>
+							<td>Minor release</td>
+							<td>Increment the middle digit and reset last digit to zero</td>
+							<td>1.1.0</td>
+						  </tr>
+						  <tr>
+							<td>Changes that break backward compatibility</td>
+							<td>Major release</td>
+							<td>Increment the first digit and reset middle and last digits to zero</td>
+							<td>2.0.0</td>
+						  </tr>
+						</tbody>
+					  </table>
+
+					  <!-- 
+						Fuente: https://docs.npmjs.com/about-semantic-versioning
+					  -->
+				</section>
+				<section data-markdown="">
+					## [Versionamiento]()
+
+					- Esquema: [major.minor.patch]() | ej. 2.1.15					
+					- [Enlace para Pruebas](https://semver.npmjs.com/)
+					- Sintaxis:
+						* ~ 
+						* ^ 
+						* <>=
+				</section>		
+				<section data-markdown="">
+					## [Uso de ~]()
+
+					Use [~]() para incluir todas las versiones [iguales o mayores]() dentro del rango de la [misma versión menor]() 
+						
+					- Ej. con lodash [~4.16]()
+					- [Incluye](): 4.16.0, 4.16.1, 4.16.2, etc 
+					- [Excluye](): 4.17.0, 4.17.1, etc 
+
+				</section>	
+				<section data-markdown="">
+					## [Uso de ^ (caret)]()
+
+					Use [^]() para incluir todas las versiones [iguales o mayores]() dentro del rango de la [misma versión mayor]() 
+						
+					- Ej. con lodash [^4.16]()
+					- [Incluye](): 4.16.0, 4.16.1, 4.16.*, 4.17.0, 4.17.1, 4.17.*, etc 
+					- [Excluye](): 4.15.1, 4.15.*, 4.14, 5.0.*
+
+				</section>		
+				<section data-markdown="">
+					## [Otras sintaxis]()
+
+					- Uso de [>](), [<](), [=]() , [>=]() o [<=]()
+					- rangos con [-]() 
+					- versión específica, ej: [1.0.0-rc.1]()
+					- Operador || (or). En el ejemplo sirve cualquiera de las 2 versiones descritas: ej. [4.17.3 || 4.17.4]()
+				</section>
+			</section>
+
+			<section>
+				<section data-markdown="">
+					## Require 
+
+					```javascript
+					const uniq = require('uniq');
+					const arr = [1, 1, 2, 2, 3, 5];
+					uniq( arr );
+					console.log( arr );
+					```
+				</section>				
+				<section data-markdown="">
+					## Browserify
+
+					- [Browsers NO]() tienen el método [require()]() definido
+					- [Node.js si]() tiene el método require().
+					- [Browserify permite]() que el código con require [funcione]() en los browsers.
+				</section>
+				<section data-markdown="">
+					## [NPX]()
+					
+					Ejecuta un comando de node instalado dentro del proyecto 
+					y no de manera global.
+
+					```bash
+					$ npx browserify index.js -o dist/index.js 
+					```
+				</section>
+				<section data-markdown="">
+					## [Sección scripts]()
+
+					```bash 
+					## instalamos express antes
+					$ npm i express
+					$ npm i rimraf
+					```
+
+					```javascript
+					...
+					"scripts": {
+						"dist": "browserify index.js -o dist/index.js",
+						"start": "node server.js",
+						"clean": "rimraf dist"
+					  },
+					...
+					```
+
+					```bash 
+					$ npm run dist # corre la tarea dist del package.json 
+					$ npm start # start no necesita run
+					$ # todos los demás scripts que no sean start necesitan run
+					```
+				</section>
+				<section data-markdown="">
+					## server.js 
+
+					```javascript
+					const express = require('express');
+					const app = express();
+					
+					app.use( express.static('./') );
+					
+					app.listen(3000, () => {
+						console.log('listening on port 3000');
+					});
+					
+					```
+				</section>
+				<section data-markdown="">
+					## [Probamos]()
+
+					También podemos probar con el archivo sin browserify.
+
+					```html
+					&lt;!DOCTYPE html&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;html lang=&quot;en&quot;&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;head&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;meta charset=&quot;UTF-8&quot;&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;...&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;title&gt;Document&lt;/title&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/head&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;body&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;script src=&quot;dist/index.js&quot;&gt;&lt;/script&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/body&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;/html&gt;
+					```
 				</section>
 			</section>
 
