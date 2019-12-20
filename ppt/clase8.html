@@ -522,6 +522,29 @@
 
 					```
 				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					let patron = /[S]\w+/ig;
+
+					let texto = `Santiago vive en Santiago, Chile.`;
+
+					console.log( texto.match(patron) );
+					```
+				</section>				
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					let str = `1st place: Winnie
+					2nd place: Piglet
+					3rd place: Eeyore`;
+					
+					str.match(/^\d/gm); // 1, 2, 3
+					str.match(/^\d/g); // 1
+					```
+				</section>
 			</section>
 			
 			<section>
@@ -541,6 +564,7 @@
 					- Permita que el usuario ingrese el RUT con puntos y guion dentro de un solo input 
 					- En caso que el usuario ingrese solo dígitos en el RUT, muestre el RUT con separador de miles a medida que el usuario va digitando 
 					- Los códigos de validación deben ser probados con Mocha, use al menos 5 casos por c/u 
+					- Modularice el código de las validaciones (para reutilización)
 				</section>
 			</section>
 		</div><!-- end .slides -->
