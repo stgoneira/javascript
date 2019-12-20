@@ -392,8 +392,157 @@
 				</section>
 				<!-- ref: pag. 481 - Cap. 12 The Browser Object Model - Professional Javascript for Web Developers, 4th Edition -->
 			</section>
-			
 
+
+
+			<section>
+				<section data-markdown="">
+					## [Expresiones Regulares]()
+
+					- Una expresión regular es una [secuencia de caracteres]() que forman un [patrón de búsqueda]()
+					- También conocidad como [RegExp]() ([Re]()gular [Exp]()ression)
+					- En JS las RegEx también son Objetos 
+				</section>
+				<section data-markdown="">
+					## [Uso de RegExp]()
+
+					- Los patrones son usados con los métodos:
+						* exec() 
+						* test() 
+					- Y también con los métodos de String: 
+						* match() 
+						* matchAll() 
+						* replace() 
+						* search() 
+						* split() 
+				</section> 
+				<section data-markdown="">
+					## Sintaxis 
+
+					```javascript
+					/* Regex Syntax 
+					/patrón/modificadores;
+					*/
+
+					// donde 'santiago' es el patrón 
+					// el modificador i hace una búsqueda case-insensitive 
+					let patron 		= /santiago/i;
+
+					// o lo mismo usando el constructor 
+					let patronObj 	= new RegExp("santiago", "i"); 
+
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplo 
+
+					```javascript
+					let patron = /santiago/i;
+					let patron2 = /santiago/;
+					// lo mismo que /santiago/i
+					let patron3 = new RegExp("santiago", "i"); 
+
+					let texto = `
+						Ola de calor en Santiago, temperaturas sobre los 34º.
+					`;
+
+					console.log( patron.test(texto) ); // true
+					console.log( patron2.test(texto) ); // false 
+					console.log( patron3.test(texto) ); // true 
+
+					
+					```
+				</section>
+				<section>
+					<h2> <a>Modificadores</a></h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Modificador</th>
+								<th>Descripción</th>
+							</tr>							
+						</thead>
+						<tbody>
+							<tr>
+								<td>i</td>
+								<td>Ejecuta el match de manera case-insensitive</td>
+							</tr>
+							<tr>
+								<td>g</td>
+								<td>Match global, es decir, encuentra todas las coincidencias, no se detiene al encontrar la primera.</td>
+							</tr>
+							<tr>
+								<td>m</td>
+								<td>Ejecuta el match multilínea</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<section data-markdown="">
+					## Expresiones 
+
+					```javascript
+					[abc] // encuentra cualquier caracter entre los brackets 
+					[^abc] // caracter que NO esté entre los brackets
+					(x|y) // encuentra cualquier caracter de las aternativas
+					// en este caso x o y 
+					[0-9] // rangos
+					[a-zA-Z] // rangos 
+					[^0-9] // rangos 
+
+					```
+				</section>
+				<section data-markdown="">
+					## [Metacaracteres]()
+
+					```javascript
+					. // Encuentra un caracter, excepto una nueva línea 
+					  //o terminación de línea (ej. \n, \r\n)
+					\w // encuentra un caracter [a-zA-Z0-9_]
+					\W // encuentra un caracter que NO esté dentro del
+					   // conjunto anterior, es decir, [^a-zA-Z0-9_]
+					\d // encuentra un dígito 
+					\D // encuentra un no-dígito 
+					\s // encuentra un espacio en blanco (whitespace)
+					\S // encuentra un NO espacio en blanco (non-whitespace)
+					```
+				</section>
+				<section data-markdown="">
+					## [Cuantificadores]() 
+
+					```javascript
+					n+ // coincide con la aparición de 1 o más de (n)
+					n* // 0 o más ocurrencias 
+					n? // 0 o 1 ocurrencia 
+					n{x} // con la coincidencia exacta de x veces 
+					n{x,y} // coincide con el rango de apariciones 
+					n{x,} // coincide con al menos x veces 
+					n$ // coincide con n al final del texto 
+					^n // coincide con n al comienzo 
+
+					```
+				</section>
+			</section>
+			
+			<section>
+				<section data-markdown="">
+					## [Ejercicio - Parte I]() 
+
+					- Continúe el ejercicio de las facturas 
+					- Utilice el modo estricto dentro de todo su código
+					- Incorpore un campo de correo elecrónico
+					- Valide este campo usando Expresiones Regulares 
+					- Adicionalmente valide que el correo solo pueda ser con dominio .cl o .com 
+				</section>
+				<section data-markdown="">
+					## [Ejercicio - Parte II]() 
+					
+					- Valide el RUT 
+					- Permita que el usuario ingrese el RUT con puntos y guion dentro de un solo input 
+					- En caso que el usuario ingrese solo dígitos en el RUT, muestre el RUT con separador de miles a medida que el usuario va digitando 
+					- Los códigos de validación deben ser probados con Mocha, use al menos 5 casos por c/u 
+				</section>
+			</section>
 		</div><!-- end .slides -->
 	</div><!-- end .reveal -->
 
