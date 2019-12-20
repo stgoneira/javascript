@@ -41,7 +41,7 @@
 		<div class="slides">
 			<section>
 				<h1>Javascript</h1>
-				<h3><a href="#">Clase 7</a></h3>
+				<h3><a href="#">Clase 8</a></h3>
 				<p>
 					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
 							Neira</a><br /><br />
@@ -53,17 +53,345 @@
 			<section data-markdown="">
 				## [Clase Anterior]()
 
-				
+				- Node.js 
+				- JSON 
+				- Proyectos 
+				- Versionamiento 
+				- Require 
+				- Scripts
+				- Browserify
+				- Express
+				- Testing				
 			</section>
 			<section data-markdown="">
 				## [Objetivos]()
 
-				- Filesystem API
 				- Strict Mode
-				- Typescript 
+				- Browser Object Model (BOM)
 				- Expresiones Regulares 
+				- Filesystem API				
+				- Typescript 				
 			</section>
 
+			<section>
+				<section data-markdown="">
+					## [Strict Mode]()
+
+					- [Desde ES5]() se puede optar por el modo estricto 
+					- El modo estricto altera la semántica de JS para mejorar ciertos aspectos 
+					- Principalmente hace más sencillo [entender qué pasa]() cuando hay [problemas]()
+					- El modo por defecto de JS se conoce como ["Sloppy Mode"]() o modo poco riguroso
+				</section>
+				<section data-markdown="">
+					## [Cambios en la Semántica]() 
+
+					- [Lanza errores]() en vez de dejarlos como [errores silenciosos]() 
+					- Permite que los motores de JS ejecuten [mejores optimizaciones]() para una ejecución más rápida 
+					- [Prohibe ciertas sintaxis]() que probablemente sean definidas en futuras versiones 
+				</section>
+				<section data-markdown="">
+					## [Contextos]()
+
+					- El Modo Estricto aplica para un [script completo]() o [funciones individuales]()
+					- [No aplica]() para [cualquier bloque]() de código {}. Ej. un if 
+					- Si aplica para:
+						* código de eval() 
+						* manejadores de eventos 
+						* strings pasados a setTimeout() 
+				</section>
+				<section data-markdown="">
+					## Uso de Strict Mode 
+
+					```javascript
+					'use strict';
+					// colocar 'use strict' antes que cualquier otra declaración
+
+					// código ... 
+					let saludo = 'Hola Mundo!';
+					console.log(saludo);
+					```
+				</section>
+				<section data-markdown="">
+					## Uso de Strict Mode 
+
+					```javascript
+					function funcionEstricta() {
+						'use strict';
+						// activación de modo estricto
+						// en contexto de una función 
+
+						// cualquier código 
+						console.log('something');
+						return true;
+					}
+					```
+				</section>
+				<section data-markdown="">
+					## [Modo Estricto para Módulos]()
+
+					- ES6 (2015) introdujo la funcionalidad de módulos 
+					- Y una 3ra forma de entrar en modo estricto 
+					- [Por defecto]() los módulos están en modo estricto 
+				</section>
+				<section data-markdown="">
+					## [Recomendaciones Generales]()
+
+					- Usar el modo estricto es una [buena práctica]()
+					- En caso de tener código Estricto y NO Estricto es recomendable:
+						* [No mezclar código]() estricto con código no estricto
+						* En el caso anterior, es mejor usar el [modo estricto a nivel de funciones]()
+				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					// Sloppy Mode 
+					console.log('hola');
+					'use strict';
+
+					undefined = 5;
+					let asdf;
+					console.log(asdf);
+					varNoExistente = 11;
+					``` 
+				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					// Strict Mode 
+					'use strict';
+
+					undefined = 5; // undefined no es escribible 
+					let asdf;
+					console.log(asdf);
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					// Strict Mode 
+					'use strict';
+
+					// Assignment to a getter-only property
+					var obj2 = { get x() { return 17; } };
+					obj2.x = 5; // throws a TypeError
+					```
+				</section>				
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					'use strict';
+					delete Object.prototype; // throws a TypeError
+					/*
+					No es posible borrar propiedades imborrables
+					*/
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					"use strict";
+					var sum = 015 + // !!! syntax error
+							197 +
+							142;
+
+					var sumWithOctal = 0o15 + 197 + 142;
+					console.log("sum", sum); 
+					console.log("sumWithOctal", sumWithOctal); 
+					/*
+					Para evitar malos entendidos con programadores novatos 
+					se cambio la sintaxis de los octales 
+					*/
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					function sum(a, a, c) { // !!! syntax error
+						'use strict';
+						return a + a + c; // wrong if this code ran
+					  }
+					  
+					  console.log( sum(1,2,3) );
+					```
+				</section>
+				<section data-markdown="">
+					## Ejemplos 
+
+					```javascript
+					(function() {
+						'use strict';
+						
+						false.true = '';         // TypeError
+						(14).sailing = 'home';   // TypeError
+						'with'.you = 'far away'; // TypeError
+						
+					})();
+					/*
+					El Modo Estricto prohibe setear propiedades 
+					sobre valores primitivos.
+					En Sloppy Mode, simplemente esto es ignorado.
+					*/
+					```
+				</section>
+			</section>
+
+
+
+
+			<section>
+				<section data-markdown="">
+					## [Browser Object Model (BOM)]()
+
+					- API que permite hablar al Browser 
+					- No existe un estándar oficial
+					- Por lo que cada browser realiza su propia implementación
+				</section>
+				<section data-markdown="">
+					## [Browser Object Model (BOM)]()
+
+					- Popularmente encontramos en el BOM objetos como:
+						* Window 
+						* Screen
+						* Location
+						* History 
+						* Navigator 
+						* Entre otros
+				</section>
+				<section data-markdown="">
+					## [Browser Tech Stack]()
+
+					![Browser JS Stack](contenido/images/js-ecma-dom-bom.png)
+				</section>
+				<section data-markdown="">
+					## [Window Object]()
+
+					- Es soportado por todos los Browsers 
+					- Actúa como objeto global, contenedor de variables, funciones
+					- Incluso como contenedor del objeto document del DOM 
+
+				</section>
+				<section data-markdown="">
+					## Window Object 
+
+					```javascript
+					window.document.getElementById('header')
+					// es lo mismo que 
+					document.getElementById('header')
+					```
+				</section>
+				<section data-markdown="">
+					## Window Size
+
+					```javascript
+					/* 
+					El tamaño interior del Browser 
+					no incluye las barras de herramientas 
+					ni las barras de scroll
+					*/
+					window.innerHeight // alto  
+					window.innerWidth  // ancho 		
+					```
+				</section>
+				<section data-markdown="">
+					## Compatibilidad Browsers
+
+					```javascript
+					// Para compatiblidad con Browsers antiguos
+					// tipo IE 5, 6, 7, 8, etc 
+					var w = window.innerWidth
+						|| document.documentElement.clientWidth
+						|| document.body.clientWidth;
+
+					var h = window.innerHeight
+						|| document.documentElement.clientHeight
+						|| document.body.clientHeight;
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejercicio 5 min]()
+
+					- Abra su browser preferido
+					- Inicie la herramienta para desarrolladores 
+					- Ejecute los comandos para conocer el ancho y alto de la ventana 
+					- Redimensione la ventana del browser 
+					- Vuelva a ejecutar los comandos para conocer el ancho y alto 
+				</section>
+				<section data-markdown="">
+					## Alcance Global - var 
+
+					```javascript
+					var age = 29;
+					var sayAge = () => alert(this.age);
+
+					alert(window.age); // 29
+					sayAge(); // 29
+					window.sayAge(); // 29
+					```
+				</section>
+				<section data-markdown="">
+					## Alcance Global - let y const 
+
+					```javascript
+					let age = 29;
+					const sayAge = () => alert(this.age);
+
+					alert(window.age); // undefined
+					sayAge(); // undefined
+					window.sayAge(); // TypeError: window.sayAge is not a function						
+					```
+				</section>
+				<section data-markdown="">
+					## Otros Métodos 
+
+					```javascript
+					window.open()					
+					window.close()
+					window.moveTo()
+					window.resizeTo()
+					```
+				</section>
+				<section data-markdown="">
+					## [Location Object]()
+
+					- Usado para conseguir información de la URL actual 
+					- Y también para redirigir a una nueva página 
+				</section>
+				<section data-markdown="">
+					## [Location Object]()
+
+					```javascript
+					window.location.href 
+					// ej. https://midominio.com/uno.html?q=algo
+					window.location.hostname // midominio.com 
+					window.location.pathname // /uno.html
+					window.location.protocol // https:
+					```
+				</section>
+				<section data-markdown="">
+					## Redirección 
+
+					```javascript
+					window.location.href = 'http://ticbiz.cl'
+					// or 
+					window.location.assign('http://ticbiz.cl')
+					```
+				</section>
+				<section data-markdown="">
+					## [History Object]()
+
+					- Contiene la historia del browser 
+					- Por privacidad del usuario solo tiene accesible 2 métodos:
+						* history.back() 
+						* history.forward() 
+				</section>
+				<!-- ref: pag. 481 - Cap. 12 The Browser Object Model - Professional Javascript for Web Developers, 4th Edition -->
+			</section>
 			
 
 		</div><!-- end .slides -->
