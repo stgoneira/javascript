@@ -60,25 +60,37 @@
 			<section data-markdown="">
 				## [Objetivos]()
 
-				- Descubrir las distintas soluciones que nos permiten construir apps para móviles 
-				- Apache Cordova 
-				- Archivos 
-				- Uso de la Cámara 
-				- Micrófono 
-				- Geolocalización 
-				- Inclinación, vibración
-				- Notificaciones 
+				- Conocer cómo funcionan las soluciones híbridas 
+				- Conocer y utilizar Apache Cordova 
+				- Desarrollar app con Vibración
+				- Desarrolllar app con Geolocalización				
+				- Desarrollar app que utilice la Cámara 
 			</section>
 
 			<section>
-				<!-- 
-					NodeJS 10 LTS 
-					Android Studio 
-					AndroidSDK
-					Gradle 
-					JDK 
-					GIT 
-				-->
+				<section data-markdown="">
+					## [Apache Cordova ]()
+
+					- Permite crear aplicaciones móviles con [HTML, CSS y Javascript]() 
+					- Para hacer esto posible utiliza un componente [WebView]()
+					- Puede utilizar componentes específicos del teléfono a través de [Plugins]():
+						* Cámara 
+						* GPS 
+						* Contactos 
+						* Entre otros 					 
+				</section>
+				<section data-markdown="" data-background-image="./contenido/images/cordova.jpg">
+				</section>
+				<section data-markdown="">
+					## [Apache Cordova ]()
+
+					- Adobe [Phonegap]() y Apache Cordova 
+					- Ionic Framework 
+						* UI Toolkit 
+						* Integra Angular, React o Vue (en desarrollo)
+				</section>
+				<section data-background="./contenido/images/cordova-app-architecture.png" data-background-interactive="" data-background-size="800px">
+				</section>
 				<section data-markdown="">
 					## Setup 
 
@@ -93,10 +105,9 @@
 				<section data-markdown="">
 					## [Env Vars]() 
 
-
 					- PATH (gradle, java, node, ..)
 					- ANDROID_HOME y ANDROID_SDK_ROOT
-					- JAVA_HOME 					
+					- JAVA_HOME 
 				</section>
 				<section data-markdown="">
 					## [Android Debug Bridge]()
@@ -110,20 +121,10 @@
 				</section>
 				<section data-markdown="">
 					## Setup Emulador 
-				</section>
-				<section data-markdown="">
-					## [Introducción Cordova ]()
+				</section>				
+			</section>
 
-					- Permite crear aplicaciones móviles con [HTML, CSS y Javascript]() 
-					- Puede utilizar componentes específicos del teléfono a través de [Plugins]():
-						* Cámara 
-						* GPS 
-						* Contactos 
-						* Entre otros 
-					- Adobe [Phonegap]() y Apache Cordova 
-				</section>
-				<section data-background="./contenido/images/cordova-app-architecture.png" data-background-interactive="" data-background-size="800px">
-				</section>
+			<section>
 				<section data-markdown="">
 					## [Hola Mundo]()
 
@@ -140,7 +141,7 @@
 					```
 				</section>
 				<section data-markdown="">
-					## [Bonus ADB Wifi]()
+					## [ADB Wifi]()
 
 					```javascript
 					# Conecta por USB y asegura que aparezca listado
@@ -169,8 +170,9 @@
 					## [Ejercicio]()
 
 					- Generar App Hola Mundo 
+					- Ejecutar
 					- Eliminar todo el código que [NO]() sea necesario
-					- Probar que funciones 
+					- Probar que funcione
 				</section>
 
 				<section data-markdown="">
@@ -190,6 +192,42 @@
 				</section>
 			</section>
 
+			<section>
+				<section data-markdown="">
+					## [Vibración]()
+				</section>
+				<section data-markdown="">
+					## [Setup]()
+
+					```bash 
+					$ cordova plugin add cordova-plugin-vibration 
+
+					```
+				</section>
+				<section data-markdown="">
+					## [Uso]()
+					
+					```javascript 
+					// navigator.vibrate(time)
+					navigator.vibrate(3000); // vibra x 3 segs
+
+					// navigator.vibrate([time])
+					navigator.vibrate([1000, 1000, 3000, 1000, 5000]);	
+					// Vibrate for 1 second
+					// Wait for 1 second
+					// Vibrate for 3 seconds
+					// Wait for 1 second
+					// Vibrate for 5 seconds
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejercicio]() 
+					
+					- Crear app usando Apache Cordova 
+					- Crear botón Vibrar 
+					- Hacer vibrar el dispositivo al pinchar el botón 
+				</section>
+			</section>
 
 			<section>
 				<section data-markdown="">
@@ -204,7 +242,40 @@
 					```
 				</section>
 				<section data-markdown="">
-					## Uso 
+					## Uso
+					
+					```javascript
+					// usar con navigator.geolocation....
+
+					// retorna la ubicación actual del dispositivo 
+					getCurrentPosition(success:fn, error:fn, options:obj)
+
+					// Vigila cambios en la ubicación del dispositivo
+					// retorna watchId
+					watchPosition(success:fn, error:fn, options:obj):String 
+
+					// Para el seguimiento a los cambios de ubicación 
+					clearWatch(watchId:String)
+					```
+				</section>
+				<section data-markdown="">
+					## Más Info 
+
+					[https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/index.html](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/index.html)
+				</section>				
+				<section data-markdown="">
+					## [Ejercicio]() 
+					
+					- Crear app usando Apache Cordova 
+					- Crear botón "Mi Ubicación"
+					- Mostrar Latitud y Longitud con su ubicación actual 
+				</section>
+				<section data-markdown="">
+					## [Ejercicio 2]() 
+					
+					- Crear app usando Apache Cordova 					
+					- Realice seguimiento de los cambios de su ubicación 
+					- Registre en pantalla los cambios 
 				</section>
 			</section>
 
