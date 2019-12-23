@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="description" content="Curso de Javascript Fullstack">
+	<meta name="author" content="Santiago Neira">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Curso Javascript</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Javascript</h1>
+				<h3><a href="#">Clase 9</a></h3>
+				<p>
+					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
+							Neira</a><br /><br />
+						<a target="_blank" href="?print-pdf"><i class="fas fa-print"></i></a>
+					</small>
+				</p>
+			</section>
+
+			<section data-markdown="">
+				## [Clase Anterior]()
+
+				- Strict Mode
+				- Browser Object Model (BOM)
+				- Expresiones Regulares					
+			</section>
+			<section data-markdown="">
+				## [Objetivos]()
+
+				- Descubrir las distintas soluciones que nos permiten construir apps para móviles 
+				- Apache Cordova 
+				- Archivos 
+				- Uso de la Cámara 
+				- Micrófono 
+				- Geolocalización 
+				- Inclinación, vibración
+				- Notificaciones 
+			</section>
+
+			<section>
+				<!-- 
+					NodeJS 10 LTS 
+					Android Studio 
+					AndroidSDK
+					Gradle 
+					JDK 
+					GIT 
+				-->
+				<section data-markdown="">
+					## Setup 
+
+					- [NodeJS](https://nodejs.org/) (ideal v10+ LTS)
+					- JDK (ideal 1.8)
+					- [Android Studio](https://developer.android.com/studio)
+					- AndroidSDK 
+					- [Gradle](https://gradle.org/)
+					- Emulador, Celular o Tablet 
+					- GIT 
+				</section>
+				<section data-markdown="">
+					## [Env Vars]() 
+
+
+					- PATH (gradle, java, node, ..)
+					- ANDROID_HOME y ANDROID_SDK_ROOT
+					- JAVA_HOME 					
+				</section>
+				<section data-markdown="">
+					## [Android Debug Bridge]()
+
+					```bash 
+					$ adb devices 
+					List of devices attached
+					30044dec0a313100	device
+
+					```
+				</section>
+				<section data-markdown="">
+					## [Introducción Cordova ]()
+
+					- Permite crear aplicaciones móviles con [HTML, CSS y Javascript]() 
+					- Puede utilizar componentes específicos del teléfono a través de [Plugins]():
+						* Cámara 
+						* GPS 
+						* Contactos 
+						* Entre otros 
+					- Adobe [Phonegap]() y Apache Cordova 
+				</section>
+				<section data-background="./contenido/images/cordova-app-architecture.png" data-background-interactive="" data-background-size="800px">
+				</section>
+				<section data-markdown="">
+					## [Hola Mundo]()
+
+					```bash 
+					$ npm install -g cordova 
+
+					$ cordova create holamundo 
+
+					$ cordova platform add browser 
+					$ cordova platform add android
+
+					$ cordova run browser 
+					$ cordova run android 
+					```
+				</section>
+				<section data-markdown="">
+					## [Bonus ADB Wifi]()
+
+					```javascript
+					# Conecta por USB y asegura que aparezca listado
+					$ adb devices 
+
+					# daemon listening on port XXXX 
+					$ adb tcpip 5555
+
+					# Buscamos la IP del móvil 					
+					$ adb shell
+					$ netcfg
+					$ ifconfig # o si no está disponible el cmd anterior 
+
+					# conectamos y ya podemos desconectar el USB 
+					$ adb connect &lt;DEVICE_IP_ADDRESS&gt;:5555										
+					```
+				</section>
+				<section data-markdown="">
+					## [Desconectar ADB Wifi]() 
+
+					```bash 
+					# Con el cable conectado 
+					$ adb -s &lt;DEVICE_IP_ADDRESS&gt;:5555
+					```
+				</section>
+				<section data-markdown="">
+					## [Ejercicio]()
+
+					- Generar App Hola Mundo 
+					- Eliminar todo el código que [NO]() sea necesario
+					- Probar que funciones 
+				</section>
+				<section data-markdown="">
+					## [Ejercicio - Parte II]()
+
+					- Cambiar el nombre y metadatos de la aplicación en [config.xml]()
+					- Cambiar el ícono 
+					- Probar que funcione 
+				</section>
+			</section>
+
+		</div><!-- end .slides -->
+	</div><!-- end .reveal -->
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>
