@@ -109,6 +109,9 @@
 					```
 				</section>
 				<section data-markdown="">
+					## Setup Emulador 
+				</section>
+				<section data-markdown="">
 					## [Introducción Cordova ]()
 
 					- Permite crear aplicaciones móviles con [HTML, CSS y Javascript]() 
@@ -159,8 +162,7 @@
 					## [Desconectar ADB Wifi]() 
 
 					```bash 
-					# Con el cable conectado 
-					$ adb -s &lt;DEVICE_IP_ADDRESS&gt;:5555
+					$ adb kill-server
 					```
 				</section>
 				<section data-markdown="">
@@ -170,12 +172,60 @@
 					- Eliminar todo el código que [NO]() sea necesario
 					- Probar que funciones 
 				</section>
+
+				<section data-markdown="">
+					## Archivo config.xml 
+					
+					```xml 
+					&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;&#10;&#9;&#9;&#9;&#9;&#9;&lt;widget id=&quot;cl.ticbiz.android.holamundo&quot; version=&quot;1.0.0&quot; xmlns=&quot;http://www.w3.org/ns/widgets&quot; xmlns:cdv=&quot;http://cordova.apache.org/ns/1.0&quot;&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;name&gt;HolaMundo&lt;/name&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;description&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;La App m&aacute;s simple de todas.&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/description&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;author email=&quot;stgoneiran@outlook.com&quot; href=&quot;http://nopage.cl&quot;&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;Santiago Neira &#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;/author&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;icon src=&quot;www/img/logo.png&quot; platform=&quot;ios&quot; width=&quot;57&quot; height=&quot;57&quot; density=&quot;mdpi&quot; /&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&lt;content src=&quot;index.html&quot; /&gt;&#10;&#9;&#9;&#9;&#9;&#9;&#9;... &#10;&#9;&#9;&#9;&#9;&#9;&lt;/widget&gt;
+					```
+				</section>
+
 				<section data-markdown="">
 					## [Ejercicio - Parte II]()
 
 					- Cambiar el nombre y metadatos de la aplicación en [config.xml]()
 					- Cambiar el ícono 
 					- Probar que funcione 
+				</section>
+			</section>
+
+
+			<section>
+				<section data-markdown="">
+					## [Geolocalización]()
+				</section>
+				<section data-markdown="">
+					## [Setup]()
+
+					```bash 
+					$ cordova plugin add cordova-plugin-geolocation
+
+					```
+				</section>
+				<section data-markdown="">
+					## Uso 
+				</section>
+			</section>
+
+			
+			<section>
+				<section data-markdown="">
+					## [Cámara]()
+
+					- Lorem 
+					- Ipsum 
+				</section>
+				<section data-markdown="">
+					## [Setup]()
+
+					```bash 
+					$ cordova plugin add cordova-plugin-camera
+
+					```
+				</section>
+				<section data-markdown="">
+					## Uso 
 				</section>
 			</section>
 
