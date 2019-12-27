@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<meta name="description" content="Curso de Javascript Fullstack">
+	<meta name="author" content="Santiago Neira">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<title>Curso Javascript</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/blood.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+		integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+
+	<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Javascript</h1>
+				<h3><a href="#">Clase 10</a></h3>
+				<p>
+					<small>Creado por <a target="_blank" href="https://github.com/stgoneira/javascript">Santiago
+							Neira</a><br /><br />
+						<a target="_blank" href="?print-pdf"><i class="fas fa-print"></i></a>
+					</small>
+				</p>
+			</section>
+
+			<!-- más recursos 
+        	   https://javascript.info/
+			-->
+
+			<section data-markdown="">
+				## [Clase Anterior]()
+				
+				- Apache Cordova 
+				- Plugin Vibración
+				- Plugin Geolocalización				
+				- Plugin Cámara (por realizar)
+			</section>
+			<section data-markdown="">
+				## [Objetivos]()
+
+				- Remote Debugging 
+				- Cámara (pendiente clase pasada)
+				- Diálogos
+				- Archivos 
+			</section>
+			<section>
+				<section data-markdown="">
+					## [Remote Debugging]()
+					
+					- Debugging se hace [complejo]() en [Android]() 
+					- [Errores]() se producen [silenciosos]()
+					- Tenemos algunas opciones:
+						* Chrome Remote Debugging
+						* [Weinre](https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html)
+				</section>
+				
+				<section data-markdown="">
+					## [Chrome Remote Debugging]()
+
+					Hamburger menu &gt; More tools &gt; Remote Devices
+
+					![Chrome Remote Debugging](contenido/images/chrome-remote-debugging.png)
+				</section>
+
+				<section data-markdown="">
+					## [Ejercicio]() 
+
+					- [Escoja]() una de sus aplicaciones para Android
+					- [Inserte]() uno o varios [errores]() a propósito 
+					- Realice [debugging]() remoto con Chrome 
+				</section>
+			</section>
+
+
+			<section>
+				<section data-markdown="">
+					## [Dialogs Plugin]()
+
+					- Provee acceso a algunas [ventanas de diálogo]() nativas
+					- Métodos (contexto [navigator.notification]()):
+						* beep()
+						* alert()
+						* confirm()
+						* prompt()						
+				</section>
+				<section data-markdown="">
+					## [Beep]()
+
+					El dispositivo toca un sonido [x]() veces
+
+					```javascript
+					// toca 3 veces sonido Beep 
+					navigator.notification.beep(3);
+					```					
+				</section>
+				<section data-markdown="">
+					## [Alert]()
+
+					```javascript 
+					alert(
+						mensaje:String, 
+						callback:function, 
+						titulo:String = 'Alert', 
+						nombreBoton:String = 'OK'
+					)
+					```
+					[Documentación](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-dialogs/index.html#navigatornotificationalert)
+				</section>
+				<section data-markdown="">
+					## [Alert Ejemplo]()
+
+					```javascript 
+					let mensaje = 'Se ha borrado correctamente el archivo!!';
+					let callback = function() {
+						redirigirURL();
+					};
+					let titulo = 'Notificación';
+					let boton = 'OK';
+
+					navigator.notification.alert(
+						mensaje, 
+						callback, 
+						titulo, 
+						boton
+					);
+					```
+					
+				</section>
+				<section data-markdown="">
+					## Confirm 
+					
+					```javascript
+					confirm(
+						mensaje: String,
+						// callback se invoca al presionar un botón 
+						// o descartar el mensaje (índice 0)
+						// OK índice 1 y Cancel 2
+						callback: function, 
+						tituloVentana: String = 'Confirm',
+						etiquetasBotones: Array = ['OK', 'Cancel']
+					)
+					```
+
+					[Documentación()](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-dialogs/index.html#navigatornotificationconfirm)
+				</section>
+				
+				<section data-markdown="">
+					## Confirm
+
+					```javascript
+					navigator.notification.confirm(
+						"Desea borrar el archivo lorem.txt?",
+						(index) => {
+							if(index === 1) {
+								console.log("Borrando el archivo");
+							} else if(index === 2) {
+								console.log("El archivo NO se borrará.");
+							}
+						},
+						"Confirmación",
+						['SI', 'NO']
+					);				
+					```
+				</section>
+				<section data-markdown="">
+					## Prompt 
+
+					```javascript
+					prompt(
+						mensaje: String, 
+						// callback recibe parámetro con el resultado como un objeto 
+						// ej: {buttonIndex: 1, input1: ''}
+						callback: function,
+						titulo: String,
+						etiquetasBotones: Array = ['OK', 'Cancel'],
+						textoInput: String = ''
+					)
+					```
+
+					[Documentación](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-dialogs/index.html#navigatornotificationprompt)
+				</section>
+				<section data-markdown="">
+					## Prompt Ejemplo 
+
+					```javascript
+					navigator.notification.prompt(
+						"Por favor escriba su nombre",
+						(res) => {
+							if( res.buttonIndex === 1 ) {
+								let nombre = res.input1;
+								console.log(`Bienvenido ${nombre}`);
+							} else {
+								console.log("Saliendo de la aplicación");
+							}
+						},
+						"Inicio",
+						['OK', 'Salir']
+					);
+					```
+				</section>
+			</section>
+            
+		</div><!-- end .slides -->
+	</div><!-- end .reveal -->
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+				{ src: 'plugin/highlight/highlight.js', async: true },
+				{ src: 'plugin/search/search.js', async: true },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+			]
+		});
+	</script>
+</body>
+
+</html>
