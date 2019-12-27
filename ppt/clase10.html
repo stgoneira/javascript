@@ -111,6 +111,13 @@
 						* prompt()						
 				</section>
 				<section data-markdown="">
+					## [Setup]() 
+
+					```bash 
+					cordova plugin add cordova-plugin-dialogs
+					```
+				</section>
+				<section data-markdown="">
 					## [Beep]()
 
 					El dispositivo toca un sonido [x]() veces
@@ -225,6 +232,118 @@
 					);
 					```
 				</section>
+			</section>
+
+
+			<section>
+				<section data-markdown="">
+					## File Plugin 
+					
+					- Implementa [File System API](https://developer.mozilla.org/en-US/docs/Web/API)
+					- Aunque aún no está estandarizada (draft)
+					- Define el objeto global [cordova.file]()
+				</section>
+				<section data-markdown="">
+					## [Setup]() 
+
+					```bash 
+					cordova plugin add cordova-plugin-file 
+					```
+				</section>
+				<section data-markdown="">
+					## Escribir Archivo 
+
+					```javascript
+					// requestFileSystem(type, size, callback, errCallback)
+					window.requestFileSystem(
+						LocalFileSystem.PERSISTENT, 0, function(fs){
+							message("filesystem open:"+fs.name);
+							// getFile(file, options, callback, errCallback)
+							fs.root.getFile(
+								'mi-archivo.txt', 
+								{create: true, exclusive: false}, 
+								function(fileEntry){ 
+									writeFile(fileEntry, 'Lorem ipsum');
+							});
+					});			
+					```
+				</section>
+				<section data-markdown="">
+					## Continuación 
+
+					```javascript
+					function writeFile(fileEntry, text) {
+						fileEntry.createWriter( function(fileWriter){
+							fileWriter.onwriteend = function(){
+								message("Se escribió el archivo!");
+							};
+
+							let dataObj = new Blob([text], {type: 'text/plain'});
+							
+							fileWriter.write( dataObj );
+						});
+					}
+					
+					```
+				</section>				
+				<section data-markdown="">
+					## [Cómo ver el archivo?]()
+
+					```bash 
+					$ adb shell
+
+					# corres los comandos como si fueras el propietario de la app 
+					run-as cl.ticbiz.android.cordova.file
+
+					# cat muestra en console el contenido del archivo 
+					cat files/files/mi-archivo.txt 
+					```
+				</section>
+				<section data-markdown="">
+					## Leer Archivo 
+
+					```javascript
+					// requestFileSystem(type, size, callback[, errorCallback])
+					window.requestFileSystem(
+						LocalFileSystem.PERSISTENT, 0, function(fs){
+							fs.root.getFile('mi-archivo.txt', {}, function(fe){
+								readFile(fe);
+							});
+					});
+			
+					```
+				</section>
+				<section data-markdown="">
+					## Leer Archivo
+
+					```javascript
+					function readFile(fileEntry) {
+						// file(callback, errCallback)
+						fileEntry.file(function(f){
+							let reader = new FileReader();
+							
+							reader.onloadend = function(){
+								message("Contenido archivo:" + this.result);
+							};
+					
+							reader.readAsText(f);
+						}, 
+						(e) => {
+							console.error(e.toString());
+						});
+					}
+					```
+				</section>
+			</section>
+
+			<section data-markdown="">
+				## [Desafío Final]()
+
+				- Llevar aplicación del clima al móvil 
+				- Permitir colocar foto como background 
+				- Guardar configuraciones en archivo(s) 
+				- Utilizar diálogos para confirmar cambios 
+				- Agregue un botón para conseguir rápidamente el clima en base a su ubicación actual (Geolocalización)
 			</section>
             
 		</div><!-- end .slides -->
