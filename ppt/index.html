@@ -5,8 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Curso Javascript</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 </head>
 <body>
     <h1>Bienvenido al Curso de Javascript</h1>
+    <div id="clases">
+	
+    </div>
+    <script>
+    'use strict';
+
+    const e = React.createElement;
+
+    const clases = [
+        {temas: 'historia, versiones, usos, sintaxis, tipos de datos, variables, operadores, funciones, '},
+        {temas: 'DOM, condicionales, loops, functiones para strings y arrays'},
+        {temas: 'clase Date, copias por valor y referencia, POO, ES5 y ES6, API DOM, Bootstrap'},
+        {temas: 'funciones Math, funciones flecha, eventos, jquery'},
+        {temas: 'formato fechas, formato números, módulos, promesas, async await, try catch, fetch'},
+        {temas: 'cookies, web storage API, IndexedDB API, herencia'},
+        {temas: 'NodeJS, JSON, NPM, NPX, versionamiento, require, express server, testing'},
+        {temas: 'strict mode, BOM, RegExp'},
+        {temas: 'Apache Cordova, vibración, geolocalización, cámara'},
+        {temas: 'debugging remoto, dialogs, files'},
+    ];
+    
+    class Clases extends React.Component {
+        constructor(props){
+            super(props);
+        }
+
+        render() {
+            let lista = [];
+            clases.forEach( (item, index, arr) => {
+                let i = index + 1;
+                let eventHandler = (e) => { window.location.href = `clase${i}.html` };
+                let elemento = e('li', {key: i, onDoubleClick: eventHandler, style:{paddingBottom: '10px'}}, `Clase ${i} - ${item.temas}`);
+                lista.push( elemento );
+            });
+            return e('ul', {}, lista);
+        }
+    }   
+    
+    const contenedor = document.getElementById('clases');
+    ReactDOM.render(e(Clases), contenedor);
+    </script>
 </body>
 </html>
